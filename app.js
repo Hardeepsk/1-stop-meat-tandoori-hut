@@ -17,20 +17,19 @@ function formatHour(h) {
 }
 
 function renderStatus() {
-  const el = document.querySelector("[data-status]");
+  const badge = document.querySelector("[data-status]");
   const { day, minutes } = torontoNow();
   const [open, close] = HOURS[day];
-  el.classList.remove("is-open", "is-closed");
-  if (minutes >= open * 60 && minutes < close * 60) {
-    el.textContent = `Open now, until ${formatHour(close)}`;
-    el.classList.add("is-open");
+  const isOpen = minutes >= open * 60 && minutes < close * 60;
+  badge.classList.toggle("is-open", isOpen);
+  badge.classList.toggle("is-closed", !isOpen);
+  if (isOpen) {
+    badge.textContent = `Open now, until ${formatHour(close)}`;
   } else if (minutes < open * 60) {
-    el.textContent = `Closed now, opens at ${formatHour(open)} today`;
-    el.classList.add("is-closed");
+    badge.textContent = `Closed now, opens at ${formatHour(open)} today`;
   } else {
     const next = (day + 1) % 7;
-    el.textContent = `Closed now, opens ${DAY_NAMES[next]} at ${formatHour(HOURS[next][0])}`;
-    el.classList.add("is-closed");
+    badge.textContent = `Closed now, opens ${DAY_NAMES[next]} at ${formatHour(HOURS[next][0])}`;
   }
   document.querySelectorAll("[data-hours] tr").forEach((row) => {
     row.classList.toggle("is-today", Number(row.dataset.day) === day);
@@ -144,8 +143,7 @@ function wireFilters(data) {
     tabs.forEach((tab) => { tab.hidden = !visibleIds.includes(tab.dataset.chip); });
     if (!visibleIds.includes(active) && visibleIds.length) active = visibleIds[0];
     panels.forEach((panel) => {
-      const id = panel.dataset.section;
-      panel.hidden = searching ? panel.dataset.matches === "0" : id !== active || panel.dataset.matches === "0";
+      panel.hidden = panel.dataset.matches === "0" || (!searching && panel.dataset.section !== active);
       const img = panel.querySelector("img[data-src]");
       if (!panel.hidden && img) {
         img.src = img.dataset.src;
@@ -172,7 +170,7 @@ function wireFilters(data) {
 
   function select(id, focus) {
     active = id;
-    if (search.value) search.value = "";
+    search.value = "";
     apply();
     const tab = tabs.find((t) => t.dataset.chip === id);
     if (focus) tab.focus();
@@ -267,7 +265,6 @@ function wireMap() {
       referrerpolicy: "no-referrer-when-downgrade",
     });
     map.replaceChildren(frame);
-    map.classList.add("is-live");
     frame.focus();
   });
 }
