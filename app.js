@@ -65,7 +65,7 @@ function renderMenu(data) {
     ]);
 
     const list = el("div", { class: "menu-items" }, section.items.map((item) => {
-      const row = el("div", { class: "menu-item", "data-veg": String(item.veg), "data-text": `${item.name} ${item.desc} ${section.name}`.toLowerCase() }, [
+      const row = el("div", { class: "menu-item", "data-veg": String(item.veg), "data-text": `${item.name} ${item.desc}`.toLowerCase() }, [
         dietMark(item.veg),
         el("span", { class: "menu-item-name", text: item.name }),
         el("span", { class: "menu-item-price", text: money.format(item.price) }),
@@ -199,18 +199,29 @@ function wireFilters(data) {
   });
 
   search.addEventListener("input", apply);
-  dietButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      diet = btn.dataset.diet;
-      dietButtons.forEach((b) => b.setAttribute("aria-checked", String(b === btn)));
-      apply();
+  function setDiet(btn) {
+    diet = btn.dataset.diet;
+    dietButtons.forEach((b) => {
+      b.setAttribute("aria-checked", String(b === btn));
+      b.tabIndex = b === btn ? 0 : -1;
+    });
+    apply();
+  }
+  dietButtons.forEach((btn, i) => {
+    btn.tabIndex = i === 0 ? 0 : -1;
+    btn.addEventListener("click", () => setDiet(btn));
+    btn.addEventListener("keydown", (e) => {
+      const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+      if (!step) return;
+      e.preventDefault();
+      const next = dietButtons[(i + step + dietButtons.length) % dietButtons.length];
+      setDiet(next);
+      next.focus();
     });
   });
   document.querySelector("[data-clear]").addEventListener("click", () => {
     search.value = "";
-    diet = "all";
-    dietButtons.forEach((b) => b.setAttribute("aria-checked", String(b.dataset.diet === "all")));
-    apply();
+    setDiet(dietButtons[0]);
     search.focus();
   });
   apply();
@@ -229,6 +240,38 @@ function wireOrderDialog() {
   });
 }
 
+function wireNav() {
+  const toggle = document.querySelector("[data-nav-toggle]");
+  const nav = document.querySelector("#site-nav");
+  const setOpen = (open) => {
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.querySelector(".visually-hidden").textContent = open ? "Close site navigation" : "Open site navigation";
+    nav.classList.toggle("is-open", open);
+  };
+  toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
+  nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+}
+
+function wireMap() {
+  const map = document.querySelector("[data-map]");
+  map.querySelector("[data-map-load]").addEventListener("click", () => {
+    const frame = el("iframe", {
+      title: "Interactive map of 1 Stop Meat and Tandoori Hut, 1070 Wellington Rd, London, Ontario",
+      src: "https://maps.google.com/maps?q=1+Stop+Meat+%26+Tandoori+Hut,+1070+Wellington+Rd,+London,+ON&z=16&output=embed",
+      referrerpolicy: "no-referrer-when-downgrade",
+    });
+    map.replaceChildren(frame);
+    map.classList.add("is-live");
+    frame.focus();
+  });
+}
+
 async function loadMenu() {
   const body = document.querySelector("[data-menu]");
   try {
@@ -244,4 +287,6 @@ document.querySelector("[data-year]").textContent = new Date().getFullYear();
 renderStatus();
 setInterval(renderStatus, 60000);
 wireOrderDialog();
+wireNav();
+wireMap();
 loadMenu();

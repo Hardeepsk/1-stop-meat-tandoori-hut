@@ -59,11 +59,15 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="#top" aria-label="1 Stop Meat and Tandoori Hut, back to top">
+    <a class="brand" href="#top">
       <img src="favicon.svg" alt="" width="36" height="36">
       <span>1 Stop Meat <span class="amp">&amp;</span> Tandoori Hut</span>
     </a>
-    <nav class="nav" aria-label="Main">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="visually-hidden">Open site navigation</span>
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+    </button>
+    <nav class="nav" id="site-nav" aria-label="Main">
       <a href="#menu">Menu</a>
       <a href="#butcher">Butcher counter</a>
       <a href="#catering">Catering</a>
@@ -89,7 +93,7 @@
       </div>
       <p class="hero-meta">
         <a href="https://www.google.com/maps/dir/?api=1&amp;destination=1070+Wellington+Rd+London+ON+N6E+1M2" target="_blank" rel="noopener">1070 Wellington Rd, Unit 14, London</a>
-        <span class="rating" aria-label="Rated 4.4 out of 5 on Google">★ 4.4 on Google</span>
+        <span class="rating"><span aria-hidden="true">★</span> Rated 4.4 on Google</span>
       </p>
     </div>
     <figure class="hero-photo">
@@ -104,7 +108,7 @@
         <img src="img/tandoor.webp" alt="A cook pulling fresh naan from a clay tandoor" width="760" height="940" loading="lazy">
         <div>
           <h3>The kitchen</h3>
-          <p>Chicken legs and tikka straight out of the tandoor, Amritsari fish, butter chicken, dal makhani, fresh naan and more than 170 dishes for takeout or delivery.</p>
+          <p>Chicken legs and tikka straight out of the tandoor, Amritsari fish, butter chicken, dal makhani, fresh naan and more than 160 dishes for takeout or delivery.</p>
           <a class="text-link" href="#menu">See the full menu</a>
         </div>
       </article>
@@ -221,19 +225,19 @@
     <div class="quotes">
       <blockquote>
         <p>The best Indian catering in London. Their service, delivery and price were excellent.</p>
-        <cite>Google review</cite>
+        <cite>Customer review</cite>
       </blockquote>
       <blockquote>
         <p>Great fish pakora, seasoned perfect and cooked to perfection!</p>
-        <cite>Google review</cite>
+        <cite>Customer review</cite>
       </blockquote>
       <blockquote>
         <p>Counter staff is so nice. She is so helpful and give a good customer service.</p>
-        <cite>Google review</cite>
+        <cite>Customer review</cite>
       </blockquote>
       <blockquote>
-        <p>Vegetarian samosa, delicious, very tasty and amazing flavour.</p>
-        <cite>Google review</cite>
+        <p>Delicious, very tasty and amazing flavour.</p>
+        <cite>Customer review</cite>
       </blockquote>
     </div>
   </section>
@@ -261,11 +265,13 @@
         <a class="btn btn-green" href="https://www.google.com/maps/dir/?api=1&amp;destination=1070+Wellington+Rd+London+ON+N6E+1M2" target="_blank" rel="noopener">Get directions</a>
         <button class="btn btn-ghost-dark" type="button" data-order>Order for delivery</button>
       </div>
-      <p class="visit-note">On Wellington Road near Bradley Avenue in south London. Holiday hours can change, so call ahead.</p>
+      <p class="visit-note">In the plaza at Wellington Road and Bradley Avenue, across from White Oaks Mall. Holiday hours can change, so call ahead.</p>
     </div>
-    <div class="map">
-      <iframe title="Map showing 1 Stop Meat and Tandoori Hut at 1070 Wellington Rd, London, Ontario" src="https://maps.google.com/maps?q=1+Stop+Meat+%26+Tandoori+Hut,+1070+Wellington+Rd,+London,+ON&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    <figure class="map" data-map>
+      <img src="img/map.webp" alt="Street map with a pin on 1070 Wellington Rd at Bradley Avenue, across from White Oaks Mall" width="1000" height="750" loading="lazy">
+      <button class="btn btn-green map-load" type="button" data-map-load>Open interactive map</button>
+      <figcaption>Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a></figcaption>
+    </figure>
   </section>
 </main>
 
