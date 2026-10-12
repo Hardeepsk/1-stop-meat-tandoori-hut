@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hardeepsk.github.io/1-stop-meat-tandoori-hut/sitemap.xml
