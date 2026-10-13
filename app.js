@@ -58,7 +58,7 @@ function renderMenu(data) {
     chips.append(el("button", {
       type: "button", role: "tab", id: `tab-${section.id}`, "aria-controls": `panel-${section.id}`,
       "aria-selected": String(i === 0), tabindex: i === 0 ? "0" : "-1", "data-chip": section.id,
-      text: section.name.replace(/^Butcher Counter — /, "Raw: "),
+      text: section.name,
     }));
   });
 
@@ -76,8 +76,9 @@ function renderButcher(data) {
   const list = document.querySelector("[data-butcher]");
   data.sections.filter((s) => s.raw).forEach((s) => {
     s.items.forEach((item) => {
-      const name = item.name.replace(/\s*\((raw|uncooked\s*1\s*lb|1\s*lb)\)/gi, "").trim();
-      list.append(el("li", {}, [el("span", { text: name }), el("b", { text: money.format(item.price) })]));
+      const perLb = /\(1 lb(, raw)?\)/.test(item.name);
+      const name = item.name.replace(/\s*\((raw|1 lb|1 lb, raw)\)/, "");
+      list.append(el("li", {}, [el("span", { text: name }), el("b", { text: `${money.format(item.price)}${perLb ? "/lb" : ""}` })]));
     });
   });
 }
@@ -245,15 +246,18 @@ function wireCart(index) {
 
   document.querySelectorAll(".fav-add[data-add]").forEach((node) => {
     const item = index.get(node.dataset.add);
-    if (item) node.dataset.name = item.name;
-    else node.remove();
+    if (!item) return node.remove();
+    node.dataset.name = item.name;
+    const caption = node.parentElement.querySelector("figcaption");
+    caption.querySelector("span").textContent = item.name;
+    caption.querySelector("b").textContent = formatCents(item.priceCents);
   });
 
   function renderDialog() {
     if (!cart.count()) {
       body.replaceChildren(el("div", { class: "cart-empty" }, [
         el("p", { text: "Your order is empty. Add dishes from the menu and they'll show up here." }),
-        el("a", { class: "btn btn-ghost-dark", href: "#menu", "data-cart-close": "", text: "Browse the menu" }),
+        el("a", { class: "btn btn-red", href: "#menu", "data-cart-close": "", text: "Browse the menu" }),
       ]));
       foot.replaceChildren();
       return;
@@ -270,7 +274,7 @@ function wireCart(index) {
     body.querySelectorAll("[data-add]").forEach(renderQty);
     foot.replaceChildren(
       el("dl", { class: "bill" }, [
-        el("div", { class: "bill-row" }, [el("dt", { text: "Subtotal" }), el("dd", { text: formatCents(bill.subtotalCents) })]),
+        el("div", { class: "bill-row" }, [el("dt", { text: `Subtotal, ${cart.count()} ${cart.count() === 1 ? "item" : "items"}` }), el("dd", { text: formatCents(bill.subtotalCents) })]),
         el("div", { class: "bill-row bill-save" }, [el("dt", { text: `Direct order discount, ${DIRECT_DISCOUNT_PCT}% off` }), el("dd", { text: `−${formatCents(bill.discountCents)}` })]),
       ]),
       el("p", { class: "bill-note", text: `HST, delivery and tip are added at checkout. Pickup or delivery from ${RESTAURANT.address}.` }),
@@ -358,7 +362,7 @@ async function loadMenu() {
     renderMenu(menu);
     wireCart(indexMenu(menu));
   } catch {
-    body.replaceChildren(el("p", { class: "menu-loading", text: "The menu didn't load. Refresh the page, or call (519) 668-6064 to order." }));
+    body.replaceChildren(el("p", { class: "form-error", text: "The menu didn't load. Refresh the page, or call (519) 668-6064 to order." }));
   }
 }
 

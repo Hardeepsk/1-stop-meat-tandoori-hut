@@ -25,12 +25,15 @@
       <a href="./#menu">Menu</a>
       <a href="account.html" data-account-link>Sign in</a>
     </nav>
+    <a class="topbar-cart" href="checkout.html" data-cart-link><span class="visually-hidden">Your order, </span><span data-cart-count>0</span><span class="visually-hidden"> items</span></a>
   </div>
 </header>
 
 <main id="main" class="page page-narrow">
+  <a class="back-link" href="account.html">Your orders</a>
   <div data-demo></div>
-  <div data-order-view aria-live="polite">
+  <p class="visually-hidden" aria-live="polite" data-announce></p>
+  <div data-order-view>
     <p class="menu-loading">Loading your order</p>
   </div>
 </main>

@@ -15,7 +15,7 @@
         },
         {
           "id": "fish-pakora-1lb-cooked",
-          "name": "Fish Pakora (1lb Cooked)",
+          "name": "Fish Pakora (1 lb, cooked)",
           "price": 10.49,
           "desc": "Crispy fried fish pieces served in a generous portion.",
           "veg": false
@@ -29,14 +29,14 @@
         },
         {
           "id": "amritsari-fish-1lb-cooked",
-          "name": "Amritsari Fish (1lb Cooked)",
+          "name": "Amritsari Fish (1 lb, cooked)",
           "price": 12.99,
           "desc": "Tender fish cooked to perfection.",
           "veg": false
         },
         {
           "id": "tandoori-wings-6pcs",
-          "name": "Tandoori Wings (6pcs)",
+          "name": "Tandoori Wings (6 pcs)",
           "price": 11.49,
           "desc": "Tender wings marinated in a blend of spices.",
           "veg": false
@@ -50,7 +50,7 @@
         },
         {
           "id": "achari-chicken-leg-2pc",
-          "name": "Achari Chicken Leg (2pc)",
+          "name": "Achari Chicken Leg (2 pcs)",
           "price": 6.99,
           "desc": "Tender chicken leg pieces marinated in a tangy achari spice blend.",
           "veg": false
@@ -78,7 +78,7 @@
         },
         {
           "id": "chicken-tikka-roll-combo",
-          "name": "Chicken Tikka Roll(Combo)",
+          "name": "Chicken Tikka Roll (Combo)",
           "price": 13.99,
           "desc": "Chicken tikka marinated in a flavourful spice blend, rolled in soft flatbread.",
           "veg": false
@@ -113,7 +113,7 @@
         },
         {
           "id": "chicken-pakora-8pc",
-          "name": "Chicken Pakora 8pc",
+          "name": "Chicken Pakora (8 pcs)",
           "price": 12.99,
           "desc": "Crispy, spiced chicken fritters, 8 pieces.",
           "veg": false
@@ -225,7 +225,7 @@
         },
         {
           "id": "6pc-veg-spring-rolls",
-          "name": "6PC Veg Spring Rolls",
+          "name": "Veg Spring Rolls (6 pcs)",
           "price": 8.99,
           "desc": "Crisp spring rolls filled with vegetables.",
           "veg": true
@@ -295,7 +295,7 @@
         },
         {
           "id": "paneer-tikka-roll-no-combo",
-          "name": "Paneer Tikka Roll (no combo)",
+          "name": "Paneer Tikka Roll (No Combo)",
           "price": 9.99,
           "desc": "Spiced paneer tikka wrapped in a soft flatbread, a delightful vegetarian snack.",
           "veg": true
@@ -309,7 +309,7 @@
         },
         {
           "id": "dahi-puri-6-pc",
-          "name": "Dahi Puri (6 pc)",
+          "name": "Dahi Puri (6 pcs)",
           "price": 9.99,
           "desc": "Six crispy puris filled and topped with cool yogurt, tangy chutneys, and crunchy sev.",
           "veg": true
@@ -1065,21 +1065,21 @@
       "items": [
         {
           "id": "veg-momos-8pc",
-          "name": "Veg Momos 8pc",
+          "name": "Veg Momos (8 pcs)",
           "price": 12.99,
           "desc": "Vegetable momos: dumplings with a seasoned mixed-veg filling. 8 pieces.",
           "veg": true
         },
         {
           "id": "chicken-momos-8pc",
-          "name": "Chicken Momos 8pc",
+          "name": "Chicken Momos (8 pcs)",
           "price": 13.99,
           "desc": "Pleated dumplings filled with savoury minced chicken.",
           "veg": false
         },
         {
           "id": "paneer-momos-8-pc",
-          "name": "Paneer Momos 8 pc",
+          "name": "Paneer Momos (8 pcs)",
           "price": 13.99,
           "desc": "Savoury dumplings stuffed with spiced paneer. 8 pieces.",
           "veg": true
@@ -1249,7 +1249,7 @@
     },
     {
       "id": "butcher-counter-marinated-chicken",
-      "name": "Butcher Counter — Marinated Chicken",
+      "name": "Meat Counter — Marinated Chicken",
       "raw": true,
       "items": [
         {
@@ -1298,19 +1298,19 @@
     },
     {
       "id": "butcher-counter-marinated-wings",
-      "name": "Butcher Counter — Marinated Wings",
+      "name": "Meat Counter — Marinated Wings",
       "raw": true,
       "items": [
         {
           "id": "jerk-wings-uncooked-1-lb",
-          "name": "Jerk Wings (Uncooked 1 lb)",
+          "name": "Jerk Wings (1 lb, raw)",
           "price": 10.99,
           "desc": "Spicy jerk seasoned chicken wings, ready to cook.",
           "veg": false
         },
         {
           "id": "tandoori-wings-uncooked-1lb",
-          "name": "Tandoori Wings (Uncooked 1lb)",
+          "name": "Tandoori Wings (1 lb, raw)",
           "price": 10.99,
           "desc": "Marinated chicken wings in a blend of Indian spices, ready to cook.",
           "veg": false
@@ -1319,7 +1319,7 @@
     },
     {
       "id": "butcher-counter-goat-lamb-fish",
-      "name": "Butcher Counter — Goat, Lamb & Fish",
+      "name": "Meat Counter — Goat, Lamb & Fish",
       "raw": true,
       "items": [
         {
@@ -1338,14 +1338,14 @@
         },
         {
           "id": "tandoori-fish-raw",
-          "name": "Tandoori Fish (Raw)",
+          "name": "Tandoori Fish (raw)",
           "price": 14.99,
           "desc": "Fish marinated in a tandoori spice blend, ready to cook.",
           "veg": false
         },
         {
           "id": "malai-fish-raw",
-          "name": "Malai Fish (Raw)",
+          "name": "Malai Fish (raw)",
           "price": 13.99,
           "desc": "Fish in a rich, creamy malai marinade, ready to cook.",
           "veg": false
@@ -1361,26 +1361,26 @@
     },
     {
       "id": "butcher-counter-veg-marinades",
-      "name": "Butcher Counter — Veg Marinades",
+      "name": "Meat Counter — Veg Marinades",
       "raw": true,
       "items": [
         {
           "id": "malai-soya-chaap-raw",
-          "name": "Malai Soya Chaap (Raw)",
+          "name": "Malai Soya Chaap (raw)",
           "price": 8.99,
           "desc": "Tender soya chops marinated in a rich, creamy sauce.",
           "veg": true
         },
         {
           "id": "paneer-tikka-raw",
-          "name": "Paneer Tikka (Raw)",
+          "name": "Paneer Tikka (raw)",
           "price": 11.99,
           "desc": "",
           "veg": true
         },
         {
           "id": "tandoori-soya-chaap-raw",
-          "name": "Tandoori Soya Chaap (Raw)",
+          "name": "Tandoori Soya Chaap (raw)",
           "price": 8.99,
           "desc": "",
           "veg": true

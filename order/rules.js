@@ -75,6 +75,14 @@ export function formatHour(h) {
   return h < 12 ? `${h} am` : `${h - 12} pm`;
 }
 
+export function formatTime(date) {
+  const { minutes } = torontoNow(date);
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  if (!m) return h ? formatHour(h) : "12 am";
+  return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "am" : "pm"}`;
+}
+
 function inOrderingWindow(date) {
   const { day, minutes } = torontoNow(date);
   const [open, close] = HOURS[day];
@@ -106,7 +114,7 @@ export function isValidSlot(iso, now = new Date()) {
 
 export function slotLabel(date, now = new Date()) {
   const dayKey = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: RESTAURANT.timeZone }).format(d);
-  const time = new Intl.DateTimeFormat("en-CA", { timeZone: RESTAURANT.timeZone, hour: "numeric", minute: "2-digit" }).format(date);
+  const time = formatTime(date);
   if (dayKey(date) === dayKey(now)) return `Today, ${time}`;
   if (dayKey(date) === dayKey(new Date(now.getTime() + 86400000))) return `Tomorrow, ${time}`;
   const weekday = new Intl.DateTimeFormat("en-CA", { timeZone: RESTAURANT.timeZone, weekday: "long" }).format(date);
@@ -161,19 +169,19 @@ export function priceOrder(index, { lines, fulfilment = "pickup", tipPct = 0 }) 
   (Array.isArray(lines) ? lines : []).forEach((line) => {
     const item = index.get(line?.id);
     const qty = line?.qty;
-    if (!item) errors.push(`Unknown item ${line?.id}`);
-    else if (!Number.isInteger(qty) || qty < 1) errors.push(`Quantity for ${item.name} must be between 1 and ${MAX_QTY}`);
+    if (!item) errors.push(`Unknown item ${line?.id}.`);
+    else if (!Number.isInteger(qty) || qty < 1) errors.push(`Quantity for ${item.name} must be between 1 and ${MAX_QTY}.`);
     else merged.set(item.id, (merged.get(item.id) || 0) + qty);
   });
   merged.forEach((qty, id) => {
     const item = index.get(id);
-    if (qty > MAX_QTY) errors.push(`Quantity for ${item.name} must be between 1 and ${MAX_QTY}`);
+    if (qty > MAX_QTY) errors.push(`Quantity for ${item.name} must be between 1 and ${MAX_QTY}.`);
     else priced.push({ id, name: item.name, qty, unitCents: item.priceCents, totalCents: item.priceCents * qty, raw: item.raw });
   });
-  if (!priced.length && !errors.length) errors.push("Your cart is empty");
-  if (!TIP_OPTIONS.includes(tipPct)) errors.push("Choose a tip from the options");
-  if (fulfilment !== "pickup" && fulfilment !== "delivery") errors.push("Choose pickup or delivery");
-  if (fulfilment === "delivery" && !DELIVERY.enabled) errors.push("Delivery isn't available right now");
+  if (!priced.length && !errors.length) errors.push("Your cart is empty.");
+  if (!TIP_OPTIONS.includes(tipPct)) errors.push("Choose a tip from the options.");
+  if (fulfilment !== "pickup" && fulfilment !== "delivery") errors.push("Choose pickup or delivery.");
+  if (fulfilment === "delivery" && !DELIVERY.enabled) errors.push("Delivery isn't available right now.");
 
   const taxableCents = priced.filter((l) => !l.raw).reduce((n, l) => n + l.totalCents, 0);
   const zeroRatedCents = priced.filter((l) => l.raw).reduce((n, l) => n + l.totalCents, 0);
@@ -182,7 +190,7 @@ export function priceOrder(index, { lines, fulfilment = "pickup", tipPct = 0 }) 
   const discountCents = taxableDiscount + pct(zeroRatedCents, DIRECT_DISCOUNT_PCT);
   const deliveryFeeCents = fulfilment === "delivery" ? DELIVERY.feeCents : 0;
   if (fulfilment === "delivery" && priced.length && subtotalCents < DELIVERY.minimumCents) {
-    errors.push(`Delivery orders start at ${formatCents(DELIVERY.minimumCents)} before the discount`);
+    errors.push(`Delivery orders start at ${formatCents(DELIVERY.minimumCents)} before the discount.`);
   }
   const taxCents = pct(taxableCents - taxableDiscount + deliveryFeeCents, HST_PCT);
   const tipCents = pct(subtotalCents - discountCents, tipPct);

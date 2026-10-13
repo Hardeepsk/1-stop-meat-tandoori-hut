@@ -2,7 +2,7 @@ import { api, isDemo, onDemoChange } from "./api.js";
 import { cart } from "./cart.js";
 import { RESTAURANT, isActiveStatus } from "./rules.js";
 import {
-  el, renderBill, renderLines, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireYear,
+  el, renderBill, renderLines, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireCartLink, wireYear,
   describeWhen, describeFulfilment, describePayment, statusLabel, formatDateTime,
 } from "./ui.js";
 
@@ -10,6 +10,7 @@ const view = document.querySelector("[data-order-view]");
 const params = new URLSearchParams(location.search);
 const id = params.get("id") || params.get("order");
 let poll;
+let shown = "";
 
 function steps(order) {
   const last = order.fulfilment.type === "delivery" ? "out_for_delivery" : "ready";
@@ -29,11 +30,20 @@ function renderProgress(order) {
 }
 
 function render(order) {
+  const signature = `${order.status}|${order.payment.status}|${order.bill.totalCents}`;
+  if (signature === shown) return;
+  if (shown) {
+    const [status, payment] = shown.split("|");
+    const announce = document.querySelector("[data-announce]");
+    if (status !== order.status) announce.textContent = `Order ${order.number}: ${statusLabel(order)}`;
+    else if (payment !== order.payment.status) announce.textContent = `Payment: ${describePayment(order)}`;
+  }
+  shown = signature;
   const notices = [];
   if (params.get("placed") === "1") {
     notices.push(el("div", { class: "notice notice-ok" }, [
       el("strong", { text: `Thanks${order.customerName ? `, ${order.customerName.split(" ")[0]}` : ""}. Your order is in.` }),
-      el("span", { text: isDemo ? " In preview mode nothing is sent to the kitchen." : " We'll text you when it's ready." }),
+      isDemo ? null : el("span", { text: " We'll text you when it's ready." }),
     ]));
   }
   if (params.get("cancelled") === "1" && order.payment.status !== "paid") {
@@ -54,7 +64,7 @@ function render(order) {
   const actions = [];
   if (order.status === "received") {
     actions.push(el("button", {
-      class: "btn btn-ghost-dark", type: "button", text: "Cancel order",
+      class: "btn btn-ghost-dark btn-danger", type: "button", text: "Cancel order",
       onclick: async (e) => {
         if (!confirm(`Cancel order ${order.number}?`)) return;
         e.currentTarget.disabled = true;
@@ -62,13 +72,14 @@ function render(order) {
           render((await api.cancelOrder(order.id)).order);
         } catch (err) {
           alert(err.message);
+          shown = "";
           load();
         }
       },
     }));
   }
   actions.push(el("button", {
-    class: "btn btn-red", type: "button", text: "Order this again",
+    class: `btn ${isActiveStatus(order.status) ? "btn-ghost-dark" : "btn-red"}`, type: "button", text: "Order again",
     onclick: () => {
       cart.replace(order.bill.lines);
       location.href = "checkout.html";
@@ -111,17 +122,21 @@ async function load() {
   } catch (err) {
     clearInterval(poll);
     if (err.status === 401) return signIn();
-    view.replaceChildren(el("div", { class: "panel empty-state" }, [
-      el("h1", { class: "panel-title", text: "We couldn't open this order" }),
-      el("p", { text: err.message }),
-      el("a", { class: "btn btn-red", href: "account.html", text: "See your orders" }),
-    ]));
+    shown = "";
+    view.replaceChildren(
+      el("div", { class: "page-head" }, [el("h1", { text: "We couldn't open this order" })]),
+      el("div", { class: "panel empty-state" }, [
+        el("p", { text: err.message }),
+        el("a", { class: "btn btn-red", href: "account.html", text: "See your orders" }),
+      ]),
+    );
   }
 }
 
 function signIn() {
   const panel = el("section", { class: "panel" });
-  view.replaceChildren(panel);
+  shown = "";
+  view.replaceChildren(el("div", { class: "page-head" }, [el("h1", { text: "Your order" })]), panel);
   mountSignIn(panel, {
     heading: "Sign in to see your order",
     intro: "Use the phone number you ordered with.",
@@ -138,6 +153,7 @@ function start() {
 async function init() {
   wireYear();
   wireAccountLink();
+  wireCartLink();
   const banner = demoBanner();
   if (banner) document.querySelector("[data-demo]").replaceChildren(banner);
   if (!id) {

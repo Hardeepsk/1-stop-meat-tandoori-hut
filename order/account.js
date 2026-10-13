@@ -1,7 +1,7 @@
 import { api } from "./api.js";
 import { cart } from "./cart.js";
 import { formatCents, formatPhone, normalizePostal, isActiveStatus } from "./rules.js";
-import { el, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireYear, statusLabel, formatDateTime } from "./ui.js";
+import { el, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireCartLink, wireYear, statusLabel, formatDateTime } from "./ui.js";
 
 const view = document.querySelector("[data-account-view]");
 let customer;
@@ -18,7 +18,7 @@ function status(node, message, ok = true) {
 function ordersPanel(orders) {
   const panel = el("section", { class: "panel", "aria-labelledby": "orders-title" }, [el("h2", { class: "panel-title", id: "orders-title", text: "Your orders" })]);
   if (!orders.length) {
-    panel.append(el("p", { text: "No orders yet. Orders you place on this site show up here." }), el("a", { class: "btn btn-red", href: "./#menu", text: "Start an order" }));
+    panel.append(el("p", { text: "No orders yet. Orders you place on this site show up here." }), el("a", { class: "btn btn-red", href: "./#menu", text: "Browse the menu" }));
     return panel;
   }
   panel.append(el("ul", { class: "order-list" }, orders.map((o) => el("li", { class: "order-row" }, [
@@ -29,9 +29,9 @@ function ordersPanel(orders) {
       el("span", { class: "order-row-items", text: o.bill.lines.map((l) => `${l.qty}× ${l.name}`).join(", ") }),
     ]),
     el("div", { class: "order-row-actions" }, [
-      el("a", { class: "btn btn-ghost-dark btn-small", href: `order.html?id=${encodeURIComponent(o.id)}`, text: isActiveStatus(o.status) ? "Track" : "View" }),
+      el("a", { class: `btn ${isActiveStatus(o.status) ? "btn-red" : "btn-ghost-dark"} btn-small`, href: `order.html?id=${encodeURIComponent(o.id)}`, text: isActiveStatus(o.status) ? "Track" : "View" }),
       el("button", {
-        class: "btn btn-red btn-small", type: "button", text: "Order again",
+        class: `btn ${isActiveStatus(o.status) ? "btn-ghost-dark" : "btn-red"} btn-small`, type: "button", text: "Order again",
         onclick: () => {
           cart.replace(o.bill.lines);
           location.href = "checkout.html";
@@ -96,18 +96,21 @@ function addressesPanel() {
   const line1 = el("input", { autocomplete: "address-line1", maxlength: "120" });
   const line2 = el("input", { autocomplete: "address-line2", maxlength: "60" });
   const postal = el("input", { autocomplete: "postal-code", maxlength: "7", autocapitalize: "characters" });
+  const instructions = el("input", { maxlength: "200", placeholder: "Side door, call on arrival" });
+  const optional = (text) => [`${text} `, el("span", { class: "optional", text: "optional" })];
   const add = el("form", { class: "stack add-address", novalidate: true, hidden: customer.addresses.length >= 5 }, [
     el("h3", { class: "sub-title", text: "Add an address" }),
-    field("Label", label),
+    field(optional("Label"), label),
     field("Street address", line1),
-    el("div", { class: "field-row" }, [field("Unit or buzzer", line2), field("Postal code", postal)]),
-    el("button", { class: "btn btn-ghost-dark", type: "submit", text: "Save address" }),
+    el("div", { class: "field-row" }, [field(optional("Unit or buzzer"), line2), field("Postal code", postal)]),
+    field(optional("Instructions for the driver"), instructions),
+    el("button", { class: "btn btn-red", type: "submit", text: "Save address" }),
   ]);
   add.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (!line1.value.trim()) return status(msg, "Add a street address.", false);
+    if (!line1.value.trim()) return status(msg, "Add a street address for delivery.", false);
     if (!normalizePostal(postal.value)) return status(msg, "Enter a postal code like N6E 1M2.", false);
-    save([...customer.addresses, { label: label.value, line1: line1.value, line2: line2.value, postal: postal.value, instructions: "" }], "Address saved.");
+    save([...customer.addresses, { label: label.value, line1: line1.value, line2: line2.value, postal: normalizePostal(postal.value), instructions: instructions.value }], "Address saved.");
   });
 
   panel.append(el("h2", { class: "panel-title", id: "addr-title", text: "Saved addresses" }), list, add, msg);
@@ -169,6 +172,7 @@ async function start() {
 }
 
 wireYear();
+wireCartLink();
 const banner = demoBanner("Accounts and orders here are stored only in this browser for the demo.");
 if (banner) document.querySelector("[data-demo]").replaceChildren(banner);
 start();

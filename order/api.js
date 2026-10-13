@@ -1,7 +1,7 @@
 import { API_BASE, DEMO_NUMBERS } from "./config.js";
 import {
   priceOrder, indexMenu, normalizePhone, normalizePostal, inDeliveryZone, asapAvailable, isValidSlot,
-  nextStatuses, isActiveStatus, formatCents,
+  nextStatuses, isActiveStatus, formatCents, STATUS_LABELS,
 } from "./rules.js";
 
 export const isDemo = !API_BASE;
@@ -238,7 +238,7 @@ function demoApi() {
       }
       const when = payload.when?.asap ? { asap: true } : { asap: false, at: payload.when?.at };
       if (when.asap && !asapAvailable()) fail("We're not taking ASAP orders right now. Pick a time.");
-      if (!when.asap && !isValidSlot(when.at)) fail("That time isn't available any more. Pick another.");
+      if (!when.asap && !isValidSlot(when.at)) fail("That time isn't available. Pick another time.");
       const method = payload.payment?.method;
       if (method !== "online" && method !== "in_person") fail("Choose how you'd like to pay.");
       if (payload.expectedTotalCents !== bill.totalCents) {
@@ -269,7 +269,7 @@ function demoApi() {
     async cancelOrder(id) {
       const db = read();
       const order = findOrder(db, id, currentCustomer(db));
-      if (order.status !== "received") fail("The kitchen has started this order. Call us to change it.", 409);
+      if (order.status !== "received") fail(`This order is already ${STATUS_LABELS[order.status].toLowerCase()}. Call us to change it.`, 409);
       setStatus(order, "cancelled");
       write(db);
       return { order };

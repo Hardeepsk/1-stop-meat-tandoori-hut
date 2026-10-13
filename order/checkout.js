@@ -26,6 +26,21 @@ function setPlaceError(message, focus = false) {
   if (message && focus) placeError.focus();
 }
 
+function clearFieldErrors() {
+  form.querySelectorAll(".field-error").forEach((n) => n.remove());
+  form.querySelectorAll("[aria-invalid]").forEach((n) => {
+    n.removeAttribute("aria-invalid");
+  });
+}
+
+function showFieldError(name, message) {
+  const field = form.elements[name];
+  const id = `error-${name}`;
+  field.closest(".field").append(el("span", { class: "form-error field-error", id, text: message }));
+  field.setAttribute("aria-invalid", "true");
+  field.focus();
+}
+
 function currentBill() {
   return priceOrder(index, { lines: cart.lines, fulfilment: value("fulfilment"), tipPct: Number(value("tip")) });
 }
@@ -59,6 +74,7 @@ function renderAccount() {
           form.hidden = true;
           startSignIn();
           renderSummary();
+          wireAccountLink();
         },
       }),
     ]),
@@ -72,6 +88,7 @@ function startSignIn() {
     onSignedIn(signedIn) {
       customer = signedIn;
       showForm();
+      wireAccountLink();
       accountPanel.querySelector(".panel-title").focus();
     },
   });
@@ -125,7 +142,7 @@ function fillSlots() {
   const asapInput = form.querySelector('input[name="when"][value="asap"]');
   asapInput.disabled = !asap;
   $("[data-asap-choice]").classList.toggle("is-disabled", !asap);
-  $("[data-asap-text]").textContent = asap ? "Usually 20 to 30 minutes" : "Not available right now. We're closed or about to close.";
+  $("[data-asap-text]").textContent = asap ? "Ready in about 20 to 30 minutes" : "Not available right now. We're closed or about to close.";
   if (!asap) form.querySelector('input[name="when"][value="later"]').checked = true;
   const select = $("[data-slots]");
   const current = select.value;
@@ -163,10 +180,12 @@ async function saveAddressIfAsked() {
 async function placeOrder(e) {
   e.preventDefault();
   delete placeError.dataset.sticky;
+  clearFieldErrors();
   const problem = validate();
   if (problem) {
-    setPlaceError(problem[0], !problem[1]);
-    if (problem[1]) form.elements[problem[1]].focus();
+    setPlaceError();
+    if (problem[1]) showFieldError(problem[1], problem[0]);
+    else setPlaceError(problem[0], true);
     return;
   }
   const delivery = value("fulfilment") === "delivery";
@@ -214,7 +233,9 @@ async function init() {
     index = indexMenu(await loadMenu());
   } catch (err) {
     $("[data-empty]").hidden = false;
+    $("[data-empty] h2").textContent = "The menu didn't load";
     $("[data-empty] p").textContent = err.message;
+    $("[data-empty] a").hidden = true;
     return;
   }
   cart.prune(index);
@@ -234,6 +255,7 @@ async function init() {
   fillSlots();
   setInterval(fillSlots, 60000);
 
+  form.addEventListener("input", clearFieldErrors);
   form.addEventListener("change", (e) => {
     serverBill = null;
     if (e.target.name === "fulfilment") updateFulfilment();

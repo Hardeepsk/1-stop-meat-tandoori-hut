@@ -142,11 +142,27 @@ function start() {
   poll = setInterval(load, isDemo ? 3000 : 10000);
 }
 
-scopeButtons.forEach((btn) => btn.addEventListener("click", () => {
+function setScope(btn) {
   scope = btn.dataset.scopeValue;
-  scopeButtons.forEach((b) => b.setAttribute("aria-checked", String(b === btn)));
+  scopeButtons.forEach((b) => {
+    b.setAttribute("aria-checked", String(b === btn));
+    b.tabIndex = b === btn ? 0 : -1;
+  });
   load();
-}));
+}
+
+scopeButtons.forEach((btn, i) => {
+  btn.tabIndex = i === 0 ? 0 : -1;
+  btn.addEventListener("click", () => setScope(btn));
+  btn.addEventListener("keydown", (e) => {
+    const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+    if (!step) return;
+    e.preventDefault();
+    const next = scopeButtons[(i + step + scopeButtons.length) % scopeButtons.length];
+    setScope(next);
+    next.focus();
+  });
+});
 
 document.querySelector("[data-staff-signout]").addEventListener("click", async () => {
   clearInterval(poll);
