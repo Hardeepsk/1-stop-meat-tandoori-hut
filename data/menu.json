@@ -7,120 +7,140 @@
       "raw": false,
       "items": [
         {
+          "id": "tandoori-chicken-leg-2-pcs",
           "name": "Tandoori Chicken Leg (2 pcs)",
           "price": 5.99,
           "desc": "",
           "veg": false
         },
         {
+          "id": "fish-pakora-1lb-cooked",
           "name": "Fish Pakora (1lb Cooked)",
           "price": 10.49,
           "desc": "Crispy fried fish pieces served in a generous portion.",
           "veg": false
         },
         {
+          "id": "kabab-roll-combo",
           "name": "Kabab Roll (Combo)",
           "price": 13.99,
           "desc": "Served with 1 pop and masala fries.",
           "veg": false
         },
         {
+          "id": "amritsari-fish-1lb-cooked",
           "name": "Amritsari Fish (1lb Cooked)",
           "price": 12.99,
           "desc": "Tender fish cooked to perfection.",
           "veg": false
         },
         {
+          "id": "tandoori-wings-6pcs",
           "name": "Tandoori Wings (6pcs)",
           "price": 11.49,
           "desc": "Tender wings marinated in a blend of spices.",
           "veg": false
         },
         {
+          "id": "fish-roll-combo",
           "name": "Fish Roll (Combo)",
           "price": 12.99,
           "desc": "Served with 1 pop and masala fries.",
           "veg": false
         },
         {
+          "id": "achari-chicken-leg-2pc",
           "name": "Achari Chicken Leg (2pc)",
           "price": 6.99,
           "desc": "Tender chicken leg pieces marinated in a tangy achari spice blend.",
           "veg": false
         },
         {
+          "id": "jerk-chicken-leg",
           "name": "Jerk Chicken Leg",
           "price": 5.99,
           "desc": "Chicken leg seasoned with jerk spices for bold, aromatic flavour.",
           "veg": false
         },
         {
+          "id": "malai-chicken-leg",
           "name": "Malai Chicken Leg",
           "price": 6.49,
           "desc": "Tender chicken leg marinated in a rich, creamy malai sauce.",
           "veg": false
         },
         {
+          "id": "egg-sandwich",
           "name": "Egg Sandwich",
           "price": 8.99,
           "desc": "Savoury egg sandwich with cooked eggs layered between bread slices.",
           "veg": false
         },
         {
+          "id": "chicken-tikka-roll-combo",
           "name": "Chicken Tikka Roll(Combo)",
           "price": 13.99,
           "desc": "Chicken tikka marinated in a flavourful spice blend, rolled in soft flatbread.",
           "veg": false
         },
         {
+          "id": "butter-chicken-fries",
           "name": "Butter Chicken Fries",
           "price": 9.99,
           "desc": "Crispy fries topped with tender chicken in a rich, creamy tomato sauce.",
           "veg": false
         },
         {
+          "id": "jerk-wings",
           "name": "Jerk Wings",
           "price": 12.99,
           "desc": "Chicken wings seasoned with jerk spices for a robust, spicy flavour.",
           "veg": false
         },
         {
+          "id": "tandoori-chicken-tikka",
           "name": "Tandoori Chicken Tikka",
           "price": 13.49,
           "desc": "Tender boneless chicken marinated in tandoori masala, cooked in the tandoor.",
           "veg": false
         },
         {
+          "id": "hariyali-chicken-tikka",
           "name": "Hariyali Chicken Tikka",
           "price": 13.49,
           "desc": "Tender chicken marinated in a vibrant green herb blend, cooked in the tandoor.",
           "veg": false
         },
         {
+          "id": "chicken-pakora-8pc",
           "name": "Chicken Pakora 8pc",
           "price": 12.99,
           "desc": "Crispy, spiced chicken fritters, 8 pieces.",
           "veg": false
         },
         {
+          "id": "malai-chicken-tikka",
           "name": "Malai Chicken Tikka",
           "price": 13.49,
           "desc": "Tender chicken marinated in a rich, creamy malai blend, cooked in the tandoor.",
           "veg": false
         },
         {
+          "id": "tandoori-fish",
           "name": "Tandoori Fish",
           "price": 16.99,
           "desc": "Fish marinated in tandoori masala, cooked in the tandoor for a smoky flavour.",
           "veg": false
         },
         {
+          "id": "chicken-tikka-roll-no-combo",
           "name": "Chicken Tikka Roll (No Combo)",
           "price": 9.99,
           "desc": "Chunks of spiced chicken tikka rolled in soft flatbread.",
           "veg": false
         },
         {
+          "id": "kabab-roll-no-combo",
           "name": "Kabab Roll (No Combo)",
           "price": 9.99,
           "desc": "Spiced kebab wrapped in soft flatbread, rolled for an easy, satisfying bite.",
@@ -134,138 +154,161 @@
       "raw": false,
       "items": [
         {
+          "id": "paneer-tikka",
           "name": "Paneer Tikka",
           "price": 13.99,
           "desc": "Marinated Indian cheese with peppers and onions, cooked in the tandoor.",
           "veg": true
         },
         {
+          "id": "samosa-each",
           "name": "Samosa (Each)",
           "price": 2.49,
           "desc": "Crispy pastry filled with spiced potatoes and peas.",
           "veg": true
         },
         {
+          "id": "paneer-tikka-roll-combo",
           "name": "Paneer Tikka Roll (Combo)",
           "price": 13.99,
           "desc": "Served with 1 pop and masala fries.",
           "veg": true
         },
         {
+          "id": "masala-fries",
           "name": "Masala Fries",
           "price": 7.99,
           "desc": "Crispy fries topped with tangy, spicy chaat masala.",
           "veg": true
         },
         {
+          "id": "chaat-papdi",
           "name": "Chaat Papdi",
           "price": 7.49,
           "desc": "Crispy fried flour bread served with a tangy and spicy flavour.",
           "veg": true
         },
         {
+          "id": "aloo-bread-pakora-1-pc",
           "name": "Aloo Bread Pakora (1 pc)",
           "price": 3.49,
           "desc": "",
           "veg": true
         },
         {
+          "id": "mix-veg-pakora-1-lb",
           "name": "Mix Veg Pakora (1 lb)",
           "price": 9.99,
           "desc": "",
           "veg": true
         },
         {
+          "id": "paneer-pakora-1-pc",
           "name": "Paneer Pakora (1 pc)",
           "price": 2.49,
           "desc": "",
           "veg": true
         },
         {
+          "id": "samosa-chaat",
           "name": "Samosa Chaat",
           "price": 8.99,
           "desc": "Crispy fried samosa pastry filled with spiced potatoes and chickpeas served over chaat papdi.",
           "veg": true
         },
         {
+          "id": "aloo-tikki-chole",
           "name": "Aloo Tikki Chole",
           "price": 10.99,
           "desc": "Crispy potato patties served with a flavorful chickpea curry.",
           "veg": true
         },
         {
+          "id": "6pc-veg-spring-rolls",
           "name": "6PC Veg Spring Rolls",
           "price": 8.99,
           "desc": "Crisp spring rolls filled with vegetables.",
           "veg": true
         },
         {
+          "id": "8pc-veg-momos",
           "name": "8PC Veg Momos",
           "price": 11.99,
           "desc": "Delicious veg dumplings filled with fresh vegetables, perfect for a light and tasty snack.",
           "veg": true
         },
         {
+          "id": "paneer-bread-pakora-full",
           "name": "Paneer Bread Pakora (Full)",
           "price": 7.99,
           "desc": "Crispy bread filled with soft paneer, a delightful snack.",
           "veg": true
         },
         {
+          "id": "malai-soya-chaap",
           "name": "Malai Soya Chaap",
           "price": 13.99,
           "desc": "Creamy, soft soya chaap, perfect for a delightful vegetarian snack.",
           "veg": true
         },
         {
+          "id": "tandoori-soya-chaap",
           "name": "Tandoori Soya Chaap",
           "price": 13.99,
           "desc": "Soya chaap marinated in tandoori masala, cooked in a tandoor for a smoky, flavorful vegetarian snack.",
           "veg": true
         },
         {
+          "id": "shahi-paneer-fries",
           "name": "Shahi Paneer Fries",
           "price": 9.99,
           "desc": "Crispy fries topped with rich shahi paneer, offering a delightful fusion of flavors.",
           "veg": true
         },
         {
+          "id": "aloo-tikki-chat",
           "name": "Aloo Tikki Chat",
           "price": 8.99,
           "desc": "Crispy aloo tikki topped with tangy chutneys, onions, and flavorful spices for a delightful snack.",
           "veg": true
         },
         {
+          "id": "samosa-channa-chat",
           "name": "Samosa Channa Chat",
           "price": 10.99,
           "desc": "Crispy samosa layered with spiced channa, onions, and tangy chutneys for a savory delight.",
           "veg": true
         },
         {
+          "id": "kachori-chole",
           "name": "Kachori Chole",
           "price": 10.99,
           "desc": "Fried kachori stuffed with spiced chickpeas and onions, delivering a crispy, flavorful snack.",
           "veg": true
         },
         {
+          "id": "loaded-masala-fries",
           "name": "Loaded Masala Fries",
           "price": 9.99,
           "desc": "Crispy fried fries topped with onions and a blend of masala spices for a flavorful kick.",
           "veg": true
         },
         {
+          "id": "paneer-tikka-roll-no-combo",
           "name": "Paneer Tikka Roll (no combo)",
           "price": 9.99,
           "desc": "Spiced paneer tikka wrapped in a soft flatbread, a delightful vegetarian snack.",
           "veg": true
         },
         {
+          "id": "aloo-tikki-noodle-burger",
           "name": "Aloo Tikki Noodle Burger",
           "price": 10.49,
           "desc": "Vegetarian burger with a spiced potato patty and noodles layered in a bun for a fun fusion bite.",
           "veg": true
         },
         {
+          "id": "dahi-puri-6-pc",
           "name": "Dahi Puri (6 pc)",
           "price": 9.99,
           "desc": "Six crispy puris filled and topped with cool yogurt, tangy chutneys, and crunchy sev.",
@@ -279,168 +322,196 @@
       "raw": false,
       "items": [
         {
+          "id": "butter-chicken",
           "name": "Butter Chicken",
           "price": 14.99,
           "desc": "Tender chicken in a rich, creamy tomato sauce.",
           "veg": false
         },
         {
+          "id": "kadai-chicken",
           "name": "Kadai Chicken",
           "price": 15.99,
           "desc": "Tender chicken cooked in a rich, aromatic spice blend with peppers and onions.",
           "veg": false
         },
         {
+          "id": "kadai-goat",
           "name": "Kadai Goat",
           "price": 16.99,
           "desc": "Tender goat meat in a rich, aromatic sauce with peppers and onions.",
           "veg": false
         },
         {
+          "id": "chicken-tikka-masala",
           "name": "Chicken Tikka Masala",
           "price": 15.99,
           "desc": "Tender chicken in a rich, creamy tomato sauce.",
           "veg": false
         },
         {
+          "id": "lamb-rogan-josh",
           "name": "Lamb Rogan Josh",
           "price": 16.99,
           "desc": "Tender lamb in a rich, aromatic spice blend.",
           "veg": false
         },
         {
+          "id": "kadhai-kabab",
           "name": "Kadhai Kabab",
           "price": 15.99,
           "desc": "Kabab pieces cooked in a rich, aromatic kadhai masala with peppers and onions.",
           "veg": false
         },
         {
+          "id": "chicken-tikka-butter-masala",
           "name": "Chicken Tikka Butter Masala",
           "price": 15.99,
           "desc": "Tender chicken tikka in a rich, creamy tomato-butter sauce with aromatic spices.",
           "veg": false
         },
         {
+          "id": "amritsari-kadhai-chicken",
           "name": "Amritsari Kadhai Chicken",
           "price": 15.99,
           "desc": "Tender chicken in a rich, aromatic Amritsari masala with peppers and onions.",
           "veg": false
         },
         {
+          "id": "fish-curry",
           "name": "Fish Curry",
           "price": 15.99,
           "desc": "Tender fish in a rich, flavourful curry sauce.",
           "veg": false
         },
         {
+          "id": "egg-curry",
           "name": "Egg Curry",
           "price": 15.99,
           "desc": "Eggs in a rich, aromatic curry sauce.",
           "veg": false
         },
         {
+          "id": "chicken-vindaloo",
           "name": "Chicken Vindaloo",
           "price": 16.99,
           "desc": "Tender chicken in a tangy, spicy vindaloo sauce.",
           "veg": false
         },
         {
+          "id": "chicken-thaari-wala",
           "name": "Chicken Thaari Wala",
           "price": 16.99,
           "desc": "Chicken in a flavourful, aromatic tariwala-style curry.",
           "veg": false
         },
         {
+          "id": "achari-chicken",
           "name": "Achari Chicken",
           "price": 16.99,
           "desc": "Chicken in a tangy, aromatic pickling spice sauce.",
           "veg": false
         },
         {
+          "id": "rara-chicken",
           "name": "Rara Chicken",
           "price": 16.99,
           "desc": "Tender chicken in a rich, aromatic rara-style sauce.",
           "veg": false
         },
         {
+          "id": "chicken-masala",
           "name": "Chicken Masala",
           "price": 16.99,
           "desc": "Tender chicken in a rich, flavourful masala gravy.",
           "veg": false
         },
         {
+          "id": "saag-chicken",
           "name": "Saag Chicken",
           "price": 16.99,
           "desc": "Tender chicken in a rich, aromatic spinach sauce.",
           "veg": false
         },
         {
+          "id": "chicken-lababdar",
           "name": "Chicken Lababdar",
           "price": 16.99,
           "desc": "North Indian-style chicken in a rich, creamy tomato-based sauce.",
           "veg": false
         },
         {
+          "id": "goat-curry",
           "name": "Goat Curry",
           "price": 16.99,
           "desc": "Tender goat in a rich, aromatic curry sauce.",
           "veg": false
         },
         {
+          "id": "amritsari-kadhai-fish",
           "name": "Amritsari Kadhai Fish",
           "price": 16.99,
           "desc": "Tender fish in a rich, aromatic Amritsari kadhai masala.",
           "veg": false
         },
         {
+          "id": "butter-fish",
           "name": "Butter Fish",
           "price": 16.99,
           "desc": "Tender fish in a rich, buttery sauce.",
           "veg": false
         },
         {
+          "id": "chicken-korma",
           "name": "Chicken Korma",
           "price": 17.99,
           "desc": "Tender chicken in a rich, creamy korma sauce with aromatic spices.",
           "veg": false
         },
         {
+          "id": "kadhai-goat",
           "name": "Kadhai Goat",
           "price": 17.99,
           "desc": "Tender goat in a rich, aromatic kadhai masala.",
           "veg": false
         },
         {
+          "id": "rara-goat",
           "name": "Rara Goat",
           "price": 17.99,
           "desc": "Tender goat in a rich, aromatic sauce.",
           "veg": false
         },
         {
+          "id": "karachi-goat",
           "name": "Karachi Goat",
           "price": 17.99,
           "desc": "Flavourful goat prepared Karachi-style with traditional spices.",
           "veg": false
         },
         {
+          "id": "amritsari-kadhai-goat",
           "name": "Amritsari Kadhai Goat",
           "price": 17.99,
           "desc": "Tender goat in a rich, flavourful Amritsari-style kadhai gravy.",
           "veg": false
         },
         {
+          "id": "saag-goat",
           "name": "Saag Goat",
           "price": 17.99,
           "desc": "Tender goat in a rich, spiced spinach sauce.",
           "veg": false
         },
         {
+          "id": "chicken-methi-malai",
           "name": "Chicken Methi Malai",
           "price": 17.99,
           "desc": "Tender chicken in a rich, creamy fenugreek sauce.",
           "veg": false
         },
         {
+          "id": "goat-korma",
           "name": "Goat Korma",
           "price": 18.99,
           "desc": "Tender goat in a rich, aromatic korma sauce.",
@@ -454,150 +525,175 @@
       "raw": false,
       "items": [
         {
+          "id": "kadai-paneer",
           "name": "Kadai Paneer",
           "price": 15.99,
           "desc": "Indian-style cheese in a rich, spicy tomato sauce.",
           "veg": true
         },
         {
+          "id": "dal-makhani",
           "name": "Dal Makhani",
           "price": 14.99,
           "desc": "Black lentils cooked in a rich, creamy tomato sauce.",
           "veg": true
         },
         {
+          "id": "bhindi-masala",
           "name": "Bhindi Masala",
           "price": 12.99,
           "desc": "Okra in a rich, spicy tomato-based sauce.",
           "veg": true
         },
         {
+          "id": "shahi-paneer",
           "name": "Shahi Paneer",
           "price": 15.99,
           "desc": "Rich and creamy paneer in a flavourful sauce.",
           "veg": true
         },
         {
+          "id": "chana-masala",
           "name": "Chana Masala",
           "price": 12.99,
           "desc": "North Indian-style chickpea curry in a rich, aromatic sauce.",
           "veg": true
         },
         {
+          "id": "mutter-paneer",
           "name": "Mutter Paneer",
           "price": 15.99,
           "desc": "Peas and paneer in a rich, creamy sauce.",
           "veg": true
         },
         {
+          "id": "mix-vegetables",
           "name": "Mix Vegetables",
           "price": 14.99,
           "desc": "Assorted vegetables served together.",
           "veg": true
         },
         {
+          "id": "chole-bhature",
           "name": "Chole Bhature",
           "price": 10.99,
           "desc": "Spicy chickpea curry served with a puffed bread.",
           "veg": true
         },
         {
+          "id": "bhindi-do-pyaza",
           "name": "Bhindi Do Pyaza",
           "price": 14.99,
           "desc": "Okra cooked with double onions and aromatic spices.",
           "veg": true
         },
         {
+          "id": "daal-dhaba-style",
           "name": "Daal Dhaba Style",
           "price": 14.99,
           "desc": "Lentil curry in a rich, aromatic sauce, dhaba style.",
           "veg": true
         },
         {
+          "id": "daal-tadka",
           "name": "Daal Tadka",
           "price": 13.99,
           "desc": "North Indian-style lentil curry finished with a flavourful spice tadka.",
           "veg": true
         },
         {
+          "id": "saag-tadka",
           "name": "Saag Tadka",
           "price": 14.99,
           "desc": "Leafy greens cooked with aromatic tempered spices.",
           "veg": true
         },
         {
+          "id": "methi-malai-mutter",
           "name": "Methi Malai Mutter",
           "price": 15.99,
           "desc": "Green peas and fenugreek leaves in a rich, creamy sauce.",
           "veg": true
         },
         {
+          "id": "kadhai-soya-chaap",
           "name": "Kadhai Soya Chaap",
           "price": 15.99,
           "desc": "Soya chaap in a rich, aromatic kadhai-style masala.",
           "veg": true
         },
         {
+          "id": "butter-soya-chaap",
           "name": "Butter Soya Chaap",
           "price": 15.99,
           "desc": "Tender soya chaap in a rich, buttery sauce.",
           "veg": true
         },
         {
+          "id": "lasana-saag",
           "name": "Lasana Saag",
           "price": 15.99,
           "desc": "North Indian-style saag of leafy greens and aromatic spices.",
           "veg": true
         },
         {
+          "id": "paneer-tikka-butter-masala",
           "name": "Paneer Tikka Butter Masala",
           "price": 15.99,
           "desc": "Paneer tikka in a rich, creamy tomato-butter sauce.",
           "veg": true
         },
         {
+          "id": "paneer-do-pyaza",
           "name": "Paneer Do Pyaza",
           "price": 15.99,
           "desc": "Paneer with plenty of onions in a rich, flavourful masala.",
           "veg": true
         },
         {
+          "id": "paneer-taka-tak",
           "name": "Paneer Taka Tak",
           "price": 15.99,
           "desc": "Indian-style cheese in a rich, flavourful masala.",
           "veg": true
         },
         {
+          "id": "amritsari-kadhai-paneer",
           "name": "Amritsari Kadhai Paneer",
           "price": 15.99,
           "desc": "Paneer with peppers and onions in a rich, flavourful tomato-onion masala.",
           "veg": true
         },
         {
+          "id": "malai-paneer",
           "name": "Malai Paneer",
           "price": 15.99,
           "desc": "Rich, creamy paneer in a flavourful malai sauce.",
           "veg": true
         },
         {
+          "id": "paneer-lababdar",
           "name": "Paneer Lababdar",
           "price": 16.99,
           "desc": "Paneer in a rich, creamy tomato sauce with aromatic spices.",
           "veg": true
         },
         {
+          "id": "malai-kofta",
           "name": "Malai Kofta",
           "price": 16.99,
           "desc": "Tender vegetable dumplings in a rich, creamy tomato sauce.",
           "veg": true
         },
         {
+          "id": "paneer-burji",
           "name": "Paneer Burji",
           "price": 17.99,
           "desc": "Scrambled Indian cottage cheese, a classic vegetarian favourite.",
           "veg": true
         },
         {
+          "id": "shahi-veg-korma",
           "name": "Shahi Veg Korma",
           "price": 17.99,
           "desc": "Mixed vegetables in a rich, creamy korma sauce with aromatic spices.",
@@ -611,48 +707,56 @@
       "raw": false,
       "items": [
         {
+          "id": "veg-biryani",
           "name": "Veg Biryani",
           "price": 11.99,
           "desc": "Vegetable biryani with fragrant rice and a rich, aromatic spice blend.",
           "veg": true
         },
         {
+          "id": "egg-biryani",
           "name": "Egg Biryani",
           "price": 12.99,
           "desc": "Basmati rice with boiled eggs in a rich, aromatic spice blend.",
           "veg": false
         },
         {
+          "id": "chicken-biryani",
           "name": "Chicken Biryani",
           "price": 12.99,
           "desc": "Fragrant basmati rice cooked with tender chicken and aromatic spices.",
           "veg": false
         },
         {
+          "id": "boneless-chicken-biryani",
           "name": "Boneless Chicken Biryani",
           "price": 14.99,
           "desc": "Flavourful rice layered with boneless chicken and aromatic spices.",
           "veg": false
         },
         {
+          "id": "kadhai-soya-chaap-biryani",
           "name": "Kadhai Soya Chaap Biryani",
           "price": 14.99,
           "desc": "Kadhai-style soya chaap cooked with aromatic spices and layered with flavourful biryani rice.",
           "veg": true
         },
         {
+          "id": "mutton-biryani",
           "name": "Mutton Biryani",
           "price": 15.99,
           "desc": "Fragrant rice with tender mutton in a rich, aromatic spice blend.",
           "veg": false
         },
         {
+          "id": "lamb-biryani",
           "name": "Lamb Biryani",
           "price": 15.99,
           "desc": "Flavourful basmati rice layered with tender lamb and aromatic spices.",
           "veg": false
         },
         {
+          "id": "kadhai-paneer-biryani",
           "name": "Kadhai Paneer Biryani",
           "price": 15.99,
           "desc": "Flavourful biryani rice with paneer in an aromatic kadhai masala.",
@@ -666,18 +770,21 @@
       "raw": false,
       "items": [
         {
+          "id": "chole-rice-bowl",
           "name": "Chole Rice Bowl",
           "price": 11.99,
           "desc": "North Indian-style chickpea curry in a rich, aromatic sauce served over rice.",
           "veg": true
         },
         {
+          "id": "kadhi-rice-bowl",
           "name": "Kadhi Rice Bowl",
           "price": 11.99,
           "desc": "Yogurt and gram flour curry served over rice.",
           "veg": true
         },
         {
+          "id": "butter-chicken-rice-bowl",
           "name": "Butter Chicken Rice Bowl",
           "price": 13.99,
           "desc": "Tender chicken in a rich, creamy tomato-butter sauce served over rice.",
@@ -691,12 +798,14 @@
       "raw": false,
       "items": [
         {
+          "id": "veg-tiffin",
           "name": "Veg Tiffin",
           "price": 11.99,
           "desc": "Assorted vegetarian dishes served together as a tiffin meal.",
           "veg": true
         },
         {
+          "id": "non-veg-tiffin",
           "name": "Non-Veg Tiffin",
           "price": 13.99,
           "desc": "Assorted non-vegetarian dishes served together.",
@@ -710,126 +819,147 @@
       "raw": false,
       "items": [
         {
+          "id": "roti",
           "name": "Roti",
           "price": 1.49,
           "desc": "Traditional unleavened whole wheat flatbread, soft and thin.",
           "veg": true
         },
         {
+          "id": "plain-naan",
           "name": "Plain Naan",
           "price": 2.99,
           "desc": "Soft, leavened flatbread with a light, fluffy texture.",
           "veg": true
         },
         {
+          "id": "butter-naan",
           "name": "Butter Naan",
           "price": 3.49,
           "desc": "Soft, fluffy naan brushed with melted butter.",
           "veg": true
         },
         {
+          "id": "garlic-naan",
           "name": "Garlic Naan",
           "price": 4.49,
           "desc": "Soft, fluffy leavened flatbread topped with garlic.",
           "veg": true
         },
         {
+          "id": "tandoori-roti",
           "name": "Tandoori Roti",
           "price": 2.99,
           "desc": "Traditional whole wheat flatbread, cooked in the tandoor.",
           "veg": true
         },
         {
+          "id": "bhatura",
           "name": "Bhatura",
           "price": 3.49,
           "desc": "Puffy, deep-fried leavened bread with a golden, crisp exterior and soft, airy centre.",
           "veg": true
         },
         {
+          "id": "butter-roti",
           "name": "Butter Roti",
           "price": 3.49,
           "desc": "Soft whole wheat flatbread brushed with butter.",
           "veg": true
         },
         {
+          "id": "plain-paratha",
           "name": "Plain Paratha",
           "price": 3.99,
           "desc": "Unstuffed layered Indian flatbread, light and flaky.",
           "veg": true
         },
         {
+          "id": "masala-naan",
           "name": "Masala Naan",
           "price": 4.49,
           "desc": "Soft tandoor-baked naan seasoned with a masala spice blend.",
           "veg": true
         },
         {
+          "id": "chili-naan",
           "name": "Chili Naan",
           "price": 4.49,
           "desc": "Soft, leavened naan dotted with chopped chilies.",
           "veg": true
         },
         {
+          "id": "ajwain-paratha",
           "name": "Ajwain Paratha",
           "price": 4.49,
           "desc": "Flaky flatbread with aromatic ajwain (carom) seeds.",
           "veg": true
         },
         {
+          "id": "lachha-plain-paratha",
           "name": "Lachha Plain Paratha",
           "price": 4.49,
           "desc": "Multi-layered, flaky wheat flatbread.",
           "veg": true
         },
         {
+          "id": "lachha-ajwain-paratha",
           "name": "Lachha Ajwain Paratha",
           "price": 4.99,
           "desc": "Flaky, layered paratha seasoned with ajwain (carom seeds) for a fragrant, savoury flavour.",
           "veg": true
         },
         {
+          "id": "lachha-onion-paratha",
           "name": "Lachha Onion Paratha",
           "price": 5.49,
           "desc": "Flaky, layered paratha with onions folded between layers.",
           "veg": true
         },
         {
+          "id": "onion-paratha",
           "name": "Onion Paratha",
           "price": 5.99,
           "desc": "Flaky, layered paratha filled with chopped onions.",
           "veg": true
         },
         {
+          "id": "aloo-paratha",
           "name": "Aloo Paratha",
           "price": 5.99,
           "desc": "Hearty whole wheat flatbread stuffed with spiced mashed potatoes.",
           "veg": true
         },
         {
+          "id": "mix-paratha",
           "name": "Mix Paratha",
           "price": 5.99,
           "desc": "Flaky, layered paratha with a medley of savoury flavours.",
           "veg": true
         },
         {
+          "id": "paneer-paratha",
           "name": "Paneer Paratha",
           "price": 7.49,
           "desc": "Flaky flatbread stuffed with crumbled paneer and savoury spices.",
           "veg": true
         },
         {
+          "id": "amritsari-kulcha",
           "name": "Amritsari Kulcha",
           "price": 7.99,
           "desc": "Amritsari leavened flatbread with a soft, layered texture.",
           "veg": true
         },
         {
+          "id": "amritsari-kulcha-with-chole",
           "name": "Amritsari Kulcha with Chole",
           "price": 11.99,
           "desc": "Stuffed Amritsari kulcha served with chole, a rich, flavourful chickpea curry.",
           "veg": true
         },
         {
+          "id": "keema-naan",
           "name": "Keema Naan",
           "price": 11.99,
           "desc": "Soft, fluffy naan stuffed with savoury minced meat.",
@@ -843,30 +973,35 @@
       "raw": false,
       "items": [
         {
+          "id": "plain-rice",
           "name": "Plain Rice",
           "price": 6.49,
           "desc": "Steaming hot, fluffy white rice.",
           "veg": true
         },
         {
+          "id": "jeera-rice",
           "name": "Jeera Rice",
           "price": 6.99,
           "desc": "Flavourful rice infused with jeera spices.",
           "veg": true
         },
         {
+          "id": "saffron-rice",
           "name": "Saffron Rice",
           "price": 6.99,
           "desc": "Flavourful rice infused with saffron.",
           "veg": true
         },
         {
+          "id": "egg-fried-rice",
           "name": "Egg Fried Rice",
           "price": 10.99,
           "desc": "Fluffy rice stir-fried with eggs and light seasoning.",
           "veg": false
         },
         {
+          "id": "chicken-fried-rice",
           "name": "Chicken Fried Rice",
           "price": 12.99,
           "desc": "Stir-fried rice with tender chicken pieces.",
@@ -880,36 +1015,42 @@
       "raw": false,
       "items": [
         {
+          "id": "maggi-masala",
           "name": "Maggi Masala",
           "price": 7.99,
           "desc": "",
           "veg": true
         },
         {
+          "id": "veg-manchurian",
           "name": "Veg Manchurian",
           "price": 12.99,
           "desc": "Hakka-style vegetable balls in a savoury Manchurian sauce.",
           "veg": true
         },
         {
+          "id": "veg-chowmein",
           "name": "Veg Chowmein",
           "price": 14.99,
           "desc": "Hakka-style stir-fried noodles with mixed vegetables.",
           "veg": true
         },
         {
+          "id": "egg-chowmein",
           "name": "Egg Chowmein",
           "price": 15.99,
           "desc": "Hakka-style stir-fried noodles with egg and mixed vegetables.",
           "veg": false
         },
         {
+          "id": "chicken-chowmein",
           "name": "Chicken Chowmein",
           "price": 16.99,
           "desc": "Hakka-style stir-fried chow mein noodles with chicken and mixed vegetables.",
           "veg": false
         },
         {
+          "id": "chilli-chicken",
           "name": "Chilli Chicken",
           "price": 16.99,
           "desc": "Chicken in a Hakka-style chilli sauce, savoury and aromatic.",
@@ -923,18 +1064,21 @@
       "raw": false,
       "items": [
         {
+          "id": "veg-momos-8pc",
           "name": "Veg Momos 8pc",
           "price": 12.99,
           "desc": "Vegetable momos: dumplings with a seasoned mixed-veg filling. 8 pieces.",
           "veg": true
         },
         {
+          "id": "chicken-momos-8pc",
           "name": "Chicken Momos 8pc",
           "price": 13.99,
           "desc": "Pleated dumplings filled with savoury minced chicken.",
           "veg": false
         },
         {
+          "id": "paneer-momos-8-pc",
           "name": "Paneer Momos 8 pc",
           "price": 13.99,
           "desc": "Savoury dumplings stuffed with spiced paneer. 8 pieces.",
@@ -948,42 +1092,49 @@
       "raw": false,
       "items": [
         {
+          "id": "rasmalai",
           "name": "Rasmalai",
           "price": 5.99,
           "desc": "3 pieces",
           "veg": true
         },
         {
+          "id": "gulab-jamun",
           "name": "Gulab Jamun",
           "price": 5.99,
           "desc": "3 pieces",
           "veg": true
         },
         {
+          "id": "besan-barfi",
           "name": "Besan Barfi",
           "price": 11.99,
           "desc": "Traditional Indian sweet fudge made from gram flour, cut into squares.",
           "veg": true
         },
         {
+          "id": "kaju-barfi",
           "name": "Kaju Barfi",
           "price": 14.99,
           "desc": "Traditional Indian cashew fudge with a rich, nutty flavour.",
           "veg": true
         },
         {
+          "id": "milk-cake",
           "name": "Milk Cake",
           "price": 14.99,
           "desc": "Traditional Indian mithai made from milk, set into soft, creamy squares.",
           "veg": true
         },
         {
+          "id": "khoya-jamun",
           "name": "Khoya Jamun",
           "price": 14.49,
           "desc": "Soft khoya dumplings, deep-fried and soaked in sugar syrup.",
           "veg": true
         },
         {
+          "id": "gulab-jamun-box",
           "name": "Gulab Jamun (Box)",
           "price": 11.99,
           "desc": "Soft milk-based dumplings soaked in sugar syrup.",
@@ -997,48 +1148,56 @@
       "raw": false,
       "items": [
         {
+          "id": "mango-lassi",
           "name": "Mango Lassi",
           "price": 6.49,
           "desc": "Creamy yogurt drink blended with sweet mango puree.",
           "veg": true
         },
         {
+          "id": "mango-shake",
           "name": "Mango Shake",
           "price": 6.49,
           "desc": "Sweet and refreshing blend of mango puree.",
           "veg": true
         },
         {
+          "id": "soft-drinks",
           "name": "Soft Drinks",
           "price": 2.49,
           "desc": "Refreshing beverages to quench your thirst.",
           "veg": true
         },
         {
+          "id": "water-bottles",
           "name": "Water Bottles",
           "price": 0.99,
           "desc": "Refreshing and thirst-quenching bottled water.",
           "veg": true
         },
         {
+          "id": "masala-tea",
           "name": "Masala Tea",
           "price": 2.49,
           "desc": "Indian-style spiced tea with milk, rich and aromatic.",
           "veg": true
         },
         {
+          "id": "salted-lassi",
           "name": "Salted Lassi",
           "price": 5.49,
           "desc": "Creamy yogurt drink seasoned with salt for a cool, savoury sip.",
           "veg": true
         },
         {
+          "id": "sweet-lassi",
           "name": "Sweet Lassi",
           "price": 5.49,
           "desc": "Creamy yogurt drink, sweetened and refreshing.",
           "veg": true
         },
         {
+          "id": "soft-drinks-2-l",
           "name": "Soft Drinks (2 L)",
           "price": 5.99,
           "desc": "",
@@ -1052,30 +1211,35 @@
       "raw": false,
       "items": [
         {
+          "id": "green-chutney",
           "name": "Green Chutney",
           "price": 0.75,
           "desc": "Fresh and tangy condiment made with green chilies and mint.",
           "veg": true
         },
         {
+          "id": "red-chutney",
           "name": "Red Chutney",
           "price": 0.75,
           "desc": "Flavourful red chutney, a classic condiment for dipping or drizzling.",
           "veg": true
         },
         {
+          "id": "8-oz-raita",
           "name": "8 oz Raita",
           "price": 2.99,
           "desc": "Creamy, cooling yogurt condiment with mild spices, 8 oz.",
           "veg": true
         },
         {
+          "id": "salad",
           "name": "Salad",
           "price": 4.99,
           "desc": "Simple, light salad to complement your meal.",
           "veg": true
         },
         {
+          "id": "24oz-raita",
           "name": "24OZ Raita",
           "price": 7.99,
           "desc": "Cool, creamy yogurt raita, lightly seasoned. 24 oz.",
@@ -1089,36 +1253,42 @@
       "raw": true,
       "items": [
         {
+          "id": "hariyali-chicken-legs-1-lb",
           "name": "Hariyali Chicken Legs (1 lb)",
           "price": 5.99,
           "desc": "",
           "veg": false
         },
         {
+          "id": "tandoori-chicken-legs-1-lb",
           "name": "Tandoori Chicken Legs (1 lb)",
           "price": 5.99,
           "desc": "",
           "veg": false
         },
         {
+          "id": "malai-chicken-legs-1-lb",
           "name": "Malai Chicken Legs (1 lb)",
           "price": 6.49,
           "desc": "",
           "veg": false
         },
         {
+          "id": "achari-chicken-legs-1-lb",
           "name": "Achari Chicken Legs (1 lb)",
           "price": 5.99,
           "desc": "",
           "veg": false
         },
         {
+          "id": "jerk-chicken-legs-1-lb",
           "name": "Jerk Chicken Legs (1 lb)",
           "price": 5.99,
           "desc": "",
           "veg": false
         },
         {
+          "id": "chicken-tikka-1-lb",
           "name": "Chicken Tikka (1 lb)",
           "price": 11.99,
           "desc": "Chicken marinated in a rich, aromatic tikka spice blend, ready to cook.",
@@ -1132,12 +1302,14 @@
       "raw": true,
       "items": [
         {
+          "id": "jerk-wings-uncooked-1-lb",
           "name": "Jerk Wings (Uncooked 1 lb)",
           "price": 10.99,
           "desc": "Spicy jerk seasoned chicken wings, ready to cook.",
           "veg": false
         },
         {
+          "id": "tandoori-wings-uncooked-1lb",
           "name": "Tandoori Wings (Uncooked 1lb)",
           "price": 10.99,
           "desc": "Marinated chicken wings in a blend of Indian spices, ready to cook.",
@@ -1151,30 +1323,35 @@
       "raw": true,
       "items": [
         {
+          "id": "lamb-leg-raw",
           "name": "Lamb Leg (raw)",
           "price": 10.99,
           "desc": "Uncooked lamb leg, ideal for your favourite recipes.",
           "veg": false
         },
         {
+          "id": "goat-leg-raw",
           "name": "Goat Leg (raw)",
           "price": 12.99,
           "desc": "Goat leg, uncooked—ideal for curries, roasts, or stews.",
           "veg": false
         },
         {
+          "id": "tandoori-fish-raw",
           "name": "Tandoori Fish (Raw)",
           "price": 14.99,
           "desc": "Fish marinated in a tandoori spice blend, ready to cook.",
           "veg": false
         },
         {
+          "id": "malai-fish-raw",
           "name": "Malai Fish (Raw)",
           "price": 13.99,
           "desc": "Fish in a rich, creamy malai marinade, ready to cook.",
           "veg": false
         },
         {
+          "id": "baby-goat-raw",
           "name": "Baby Goat (raw)",
           "price": 14.99,
           "desc": "Uncooked baby goat meat, ready to cook in your favourite dishes.",
@@ -1188,18 +1365,21 @@
       "raw": true,
       "items": [
         {
+          "id": "malai-soya-chaap-raw",
           "name": "Malai Soya Chaap (Raw)",
           "price": 8.99,
           "desc": "Tender soya chops marinated in a rich, creamy sauce.",
           "veg": true
         },
         {
+          "id": "paneer-tikka-raw",
           "name": "Paneer Tikka (Raw)",
           "price": 11.99,
           "desc": "",
           "veg": true
         },
         {
+          "id": "tandoori-soya-chaap-raw",
           "name": "Tandoori Soya Chaap (Raw)",
           "price": 8.99,
           "desc": "",

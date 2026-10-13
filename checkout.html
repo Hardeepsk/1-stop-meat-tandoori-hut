@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout | 1 Stop Meat &amp; Tandoori Hut</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#121212">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Rozha+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="subpage">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="./">
+      <img src="favicon.svg" alt="" width="36" height="36">
+      <span>1 Stop Meat <span class="amp">&amp;</span> Tandoori Hut</span>
+    </a>
+    <nav class="subnav" aria-label="Main">
+      <a href="./#menu">Menu</a>
+      <a href="account.html" data-account-link>Sign in</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="page-head">
+    <a class="back-link" href="./#menu">Back to the menu</a>
+    <h1>Checkout</h1>
+    <p class="page-lede">Ordering direct saves you 10% on everything.</p>
+  </div>
+  <div data-demo></div>
+
+  <div class="checkout" data-checkout hidden>
+    <div class="checkout-main">
+      <section class="panel" data-account-panel aria-live="polite"></section>
+
+      <form class="checkout-form" id="checkout-form" data-checkout-form novalidate hidden>
+        <fieldset class="panel">
+          <legend class="panel-title">Pickup or delivery</legend>
+          <div class="choice-grid">
+            <label class="choice">
+              <input type="radio" name="fulfilment" value="pickup" checked>
+              <span class="choice-title">Pickup</span>
+              <span class="choice-text">1070 Wellington Rd, Unit 14, across from White Oaks Mall</span>
+            </label>
+            <label class="choice" data-delivery-choice>
+              <input type="radio" name="fulfilment" value="delivery">
+              <span class="choice-title">Delivery</span>
+              <span class="choice-text" data-delivery-terms></span>
+            </label>
+          </div>
+          <div class="address-fields" data-address hidden>
+            <label class="field" data-saved-wrap hidden>
+              <span>Saved address</span>
+              <select name="savedAddress" data-saved-address></select>
+            </label>
+            <label class="field">
+              <span>Street address</span>
+              <input name="line1" autocomplete="address-line1" maxlength="120">
+            </label>
+            <div class="field-row">
+              <label class="field">
+                <span>Unit or buzzer <span class="optional">optional</span></span>
+                <input name="line2" autocomplete="address-line2" maxlength="60">
+              </label>
+              <label class="field">
+                <span>Postal code</span>
+                <input name="postal" autocomplete="postal-code" maxlength="7" autocapitalize="characters">
+              </label>
+            </div>
+            <p class="field-hint" data-zone-hint aria-live="polite"></p>
+            <label class="field">
+              <span>Instructions for the driver <span class="optional">optional</span></span>
+              <input name="instructions" maxlength="200" placeholder="Side door, call on arrival">
+            </label>
+            <label class="check">
+              <input type="checkbox" name="saveAddress" checked>
+              <span>Save this address to my account</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="panel">
+          <legend class="panel-title">When</legend>
+          <div class="choice-grid">
+            <label class="choice" data-asap-choice>
+              <input type="radio" name="when" value="asap" checked>
+              <span class="choice-title">As soon as possible</span>
+              <span class="choice-text" data-asap-text>Usually 20 to 30 minutes</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="when" value="later">
+              <span class="choice-title">Schedule for later</span>
+              <span class="choice-text">Today or tomorrow, in opening hours</span>
+            </label>
+          </div>
+          <label class="field" data-slot-wrap hidden>
+            <span>Time</span>
+            <select name="slot" data-slots></select>
+          </label>
+        </fieldset>
+
+        <fieldset class="panel">
+          <legend class="panel-title">Your details</legend>
+          <label class="field">
+            <span>Name for the order</span>
+            <input name="name" autocomplete="name" maxlength="80" required>
+          </label>
+          <label class="field">
+            <span>Note for the kitchen <span class="optional">optional</span></span>
+            <textarea name="note" rows="3" maxlength="300" placeholder="Spice level, allergies, extra chutney"></textarea>
+          </label>
+        </fieldset>
+
+        <fieldset class="panel">
+          <legend class="panel-title">Tip</legend>
+          <div class="tip-options" data-tips></div>
+          <p class="field-hint">Tips go to the kitchen and delivery team.</p>
+        </fieldset>
+
+        <fieldset class="panel">
+          <legend class="panel-title">Payment</legend>
+          <div class="choice-grid">
+            <label class="choice">
+              <input type="radio" name="payment" value="online" checked>
+              <span class="choice-title">Pay now by card</span>
+              <span class="choice-text" data-online-text></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="payment" value="in_person">
+              <span class="choice-title" data-in-person-title>Pay at pickup</span>
+              <span class="choice-text">Cash, debit or credit</span>
+            </label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <aside class="checkout-summary panel" aria-labelledby="summary-title">
+      <h2 class="panel-title" id="summary-title">Your order</h2>
+      <div data-summary-lines></div>
+      <a class="text-link edit-cart" href="./#menu">Add or change dishes</a>
+      <div data-summary-bill></div>
+      <p class="form-error" role="alert" data-place-error tabindex="-1"></p>
+      <button class="btn btn-red btn-block" type="submit" form="checkout-form" data-place disabled>Sign in to place your order</button>
+      <p class="fine-print">By placing an order you agree to be contacted by text about it. Prices include the 10% direct discount before HST.</p>
+    </aside>
+  </div>
+
+  <div class="panel empty-state" data-empty hidden>
+    <h2 class="panel-title">Your order is empty</h2>
+    <p>Add dishes from the menu, then come back here to check out.</p>
+    <a class="btn btn-red" href="./#menu">Browse the menu</a>
+  </div>
+</main>
+
+<footer class="footer footer-slim">
+  <div class="footer-inner">
+    <p>1 Stop Meat &amp; Tandoori Hut, 1070 Wellington Rd, Unit 14, London, ON N6E 1M2. <a href="tel:+15196686064">(519) 668-6064</a></p>
+    <p class="copy">&copy; <span data-year>2026</span> 1 Stop Meat &amp; Tandoori Hut</p>
+  </div>
+</footer>
+
+<script type="module" src="order/checkout.js"></script>
+</body>
+</html>

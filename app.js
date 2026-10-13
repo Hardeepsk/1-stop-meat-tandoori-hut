@@ -1,20 +1,7 @@
-const HOURS = { 0: [11, 21], 1: [11, 21], 2: [11, 21], 3: [11, 21], 4: [11, 21], 5: [11, 23], 6: [11, 23] };
-const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const money = new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" });
-
-function torontoNow() {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/Toronto", weekday: "short", hour: "numeric", minute: "numeric", hourCycle: "h23",
-  }).formatToParts(new Date());
-  const get = (type) => parts.find((p) => p.type === type).value;
-  const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(get("weekday"));
-  return { day, minutes: Number(get("hour")) * 60 + Number(get("minute")) };
-}
-
-function formatHour(h) {
-  if (h === 12) return "noon";
-  return h < 12 ? `${h} am` : `${h - 12} pm`;
-}
+import { HOURS, DAY_NAMES, torontoNow, formatHour, money, indexMenu, priceOrder, formatCents, DIRECT_DISCOUNT_PCT, RESTAURANT } from "./order/rules.js";
+import { cart } from "./order/cart.js";
+import { loadMenu as fetchMenu } from "./order/api.js";
+import { el, wireAccountLink } from "./order/ui.js";
 
 function renderStatus() {
   const badge = document.querySelector("[data-status]");
@@ -34,17 +21,6 @@ function renderStatus() {
   document.querySelectorAll("[data-hours] tr").forEach((row) => {
     row.classList.toggle("is-today", Number(row.dataset.day) === day);
   });
-}
-
-function el(tag, attrs = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(attrs).forEach(([k, v]) => {
-    if (k === "text") node.textContent = v;
-    else if (k === "class") node.className = v;
-    else node.setAttribute(k, v);
-  });
-  children.forEach((c) => node.append(c));
-  return node;
 }
 
 function dietMark(veg) {
@@ -68,6 +44,7 @@ function renderMenu(data) {
         dietMark(item.veg),
         el("span", { class: "menu-item-name", text: item.name }),
         el("span", { class: "menu-item-price", text: money.format(item.price) }),
+        el("span", { class: "qty", "data-add": item.id, "data-name": item.name }),
       ]);
       if (item.desc) row.append(el("span", { class: "menu-item-desc", text: item.desc }));
       return row;
@@ -228,14 +205,119 @@ function wireFilters(data) {
 function wireOrderDialog() {
   const dialog = document.querySelector("[data-order-dialog]");
   document.querySelectorAll("[data-order]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      if (typeof dialog.showModal === "function") dialog.showModal();
-      else window.open(dialog.querySelector(".order-links a").href, "_blank", "noopener");
-    });
+    btn.addEventListener("click", () => dialog.showModal());
   });
   dialog.addEventListener("click", (e) => {
     if (e.target === dialog) dialog.close();
   });
+  dialog.querySelector("[data-direct]").addEventListener("click", () => {
+    dialog.close();
+    if (cart.count()) {
+      document.querySelector("[data-cart-open]").click();
+    } else {
+      document.querySelector("#menu").scrollIntoView();
+      document.querySelector("[data-search]").focus({ preventScroll: true });
+    }
+  });
+}
+
+function renderQty(node) {
+  const { add: id, name } = node.dataset;
+  const qty = cart.qty(id);
+  if (!qty) {
+    node.replaceChildren(el("button", { type: "button", class: "qty-add", "data-act": "inc", "aria-label": `Add ${name}`, text: "Add" }));
+    return;
+  }
+  node.replaceChildren(
+    el("button", { type: "button", class: "qty-btn", "data-act": "dec", "aria-label": qty === 1 ? `Remove ${name}` : `One less ${name}`, text: "−" }),
+    el("span", { class: "qty-n", text: String(qty) }),
+    el("button", { type: "button", class: "qty-btn", "data-act": "inc", "aria-label": `One more ${name}`, text: "+" }),
+  );
+}
+
+function wireCart(index) {
+  const bar = document.querySelector("[data-cartbar]");
+  const dialog = document.querySelector("[data-cart-dialog]");
+  const body = dialog.querySelector("[data-cart-body]");
+  const foot = dialog.querySelector("[data-cart-foot]");
+  const announce = el("p", { class: "visually-hidden", "aria-live": "polite" });
+  document.body.append(announce);
+
+  document.querySelectorAll(".fav-add[data-add]").forEach((node) => {
+    const item = index.get(node.dataset.add);
+    if (item) node.dataset.name = item.name;
+    else node.remove();
+  });
+
+  function renderDialog() {
+    if (!cart.count()) {
+      body.replaceChildren(el("div", { class: "cart-empty" }, [
+        el("p", { text: "Your order is empty. Add dishes from the menu and they'll show up here." }),
+        el("a", { class: "btn btn-ghost-dark", href: "#menu", "data-cart-close": "", text: "Browse the menu" }),
+      ]));
+      foot.replaceChildren();
+      return;
+    }
+    const bill = priceOrder(index, { lines: cart.lines });
+    body.replaceChildren(el("ul", { class: "cart-lines" }, bill.lines.map((line) => el("li", { class: "cart-line" }, [
+      el("div", { class: "cart-line-text" }, [
+        el("span", { class: "cart-line-name", text: line.name }),
+        el("span", { class: "cart-line-unit", text: `${formatCents(line.unitCents)} each` }),
+      ]),
+      el("span", { class: "qty", "data-add": line.id, "data-name": line.name }),
+      el("span", { class: "cart-line-total", text: formatCents(line.totalCents) }),
+    ]))));
+    body.querySelectorAll("[data-add]").forEach(renderQty);
+    foot.replaceChildren(
+      el("dl", { class: "bill" }, [
+        el("div", { class: "bill-row" }, [el("dt", { text: "Subtotal" }), el("dd", { text: formatCents(bill.subtotalCents) })]),
+        el("div", { class: "bill-row bill-save" }, [el("dt", { text: `Direct order discount, ${DIRECT_DISCOUNT_PCT}% off` }), el("dd", { text: `−${formatCents(bill.discountCents)}` })]),
+      ]),
+      el("p", { class: "bill-note", text: `HST, delivery and tip are added at checkout. Pickup or delivery from ${RESTAURANT.address}.` }),
+      el("a", { class: "btn btn-red btn-block", href: "checkout.html", text: `Go to checkout, ${formatCents(bill.subtotalCents - bill.discountCents)}` }),
+    );
+  }
+
+  function render() {
+    const count = cart.count();
+    document.querySelectorAll("[data-cart-count]").forEach((n) => { n.textContent = count; });
+    document.querySelector(".topbar-cart").classList.toggle("has-items", count > 0);
+    bar.hidden = count === 0;
+    document.body.classList.toggle("has-cartbar", count > 0);
+    if (count) {
+      const bill = priceOrder(index, { lines: cart.lines });
+      bar.querySelector("[data-cart-total]").textContent = formatCents(bill.subtotalCents - bill.discountCents);
+    }
+    document.querySelectorAll("main [data-add]").forEach(renderQty);
+    if (dialog.open) renderDialog();
+  }
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-act]");
+    if (!btn) return;
+    const node = btn.closest("[data-add]");
+    const { add: id, name } = node.dataset;
+    const inc = btn.dataset.act === "inc";
+    cart.set(id, cart.qty(id) + (inc ? 1 : -1));
+    const qty = cart.qty(id);
+    announce.textContent = `${name}: ${qty} in your order. ${cart.count()} items total.`;
+    const target = node.isConnected ? node : dialog.querySelector(`[data-add="${CSS.escape(id)}"]`);
+    const next = target?.querySelector(`[data-act="${qty ? btn.dataset.act : "inc"}"]`);
+    if (next) next.focus();
+    else if (dialog.open) dialog.querySelector(".sheet-close").focus();
+  });
+
+  document.querySelectorAll("[data-cart-open]").forEach((btn) => btn.addEventListener("click", () => {
+    renderDialog();
+    dialog.showModal();
+  }));
+  dialog.addEventListener("click", (e) => {
+    if (e.target === dialog || e.target.closest("[data-cart-close]")) dialog.close();
+  });
+
+  cart.prune(index);
+  cart.subscribe(render);
+  render();
 }
 
 function wireNav() {
@@ -272,9 +354,9 @@ function wireMap() {
 async function loadMenu() {
   const body = document.querySelector("[data-menu]");
   try {
-    const res = await fetch("data/menu.json");
-    if (!res.ok) throw new Error(res.status);
-    renderMenu(await res.json());
+    const menu = await fetchMenu();
+    renderMenu(menu);
+    wireCart(indexMenu(menu));
   } catch {
     body.replaceChildren(el("p", { class: "menu-loading", text: "The menu didn't load. Refresh the page, or call (519) 668-6064 to order." }));
   }
@@ -287,3 +369,4 @@ wireOrderDialog();
 wireNav();
 wireMap();
 loadMenu();
+wireAccountLink();
