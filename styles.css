@@ -515,6 +515,19 @@ legend.panel-title + * { clear: both; }
 .ticket-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .footer-slim .footer-inner { padding: 28px var(--gutter); grid-template-columns: 1fr; gap: 6px; }
+.fine-print a { color: var(--red); text-underline-offset: 3px; }
+.fine-print a:hover { color: var(--black); }
+
+.prose p, .prose ul { max-width: 68ch; margin: 0 0 16px; }
+.prose ul { padding-left: 1.25em; }
+.prose li { margin-bottom: 6px; }
+.prose li::marker { color: var(--red); }
+.prose h2 { font-size: clamp(1.5rem, 4vw, 2rem); color: var(--red); margin: 40px 0 12px; }
+.prose a { color: var(--red); font-weight: 600; text-underline-offset: 4px; }
+.prose a:hover { color: var(--black); }
+.prose a[href^="tel:"] { white-space: nowrap; }
+.prose .page-head { margin-bottom: 8px; }
+.notfound-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 @media (max-width: 1080px) {
   .topbar-inner { position: relative; }

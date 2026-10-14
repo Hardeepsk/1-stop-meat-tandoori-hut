@@ -1,4 +1,4 @@
-import { MAX_QTY } from "./rules.js?v=145c4863ef";
+import { MAX_QTY } from "./rules.js?v=23660a1f26";
 
 const KEY = "th.cart";
 const listeners = new Set();

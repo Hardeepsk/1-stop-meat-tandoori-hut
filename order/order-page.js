@@ -1,10 +1,10 @@
-import { api, isDemo, onDemoChange } from "./api.js?v=145c4863ef";
-import { cart } from "./cart.js?v=145c4863ef";
-import { RESTAURANT, isActiveStatus } from "./rules.js?v=145c4863ef";
+import { api, isDemo, onDemoChange } from "./api.js?v=23660a1f26";
+import { cart } from "./cart.js?v=23660a1f26";
+import { RESTAURANT, isActiveStatus } from "./rules.js?v=23660a1f26";
 import {
   el, renderBill, renderLines, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireCartLink, wireYear,
   describeWhen, describeFulfilment, describePayment, statusLabel, formatDateTime,
-} from "./ui.js?v=145c4863ef";
+} from "./ui.js?v=23660a1f26";
 
 const view = document.querySelector("[data-order-view]");
 const params = new URLSearchParams(location.search);
