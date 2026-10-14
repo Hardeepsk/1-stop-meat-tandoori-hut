@@ -1,10 +1,10 @@
-import { api, isDemo, loadMenu } from "./api.js";
-import { cart } from "./cart.js";
+import { api, isDemo, loadMenu } from "./api.js?v=145c4863ef";
+import { cart } from "./cart.js?v=145c4863ef";
 import {
   indexMenu, priceOrder, formatCents, formatPhone, orderSlots, slotLabel, asapAvailable, normalizePostal,
   inDeliveryZone, DELIVERY, TIP_OPTIONS,
-} from "./rules.js";
-import { el, renderBill, renderLines, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireYear } from "./ui.js";
+} from "./rules.js?v=145c4863ef";
+import { el, renderBill, renderLines, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireYear } from "./ui.js?v=145c4863ef";
 
 const $ = (sel) => document.querySelector(sel);
 const form = $("[data-checkout-form]");

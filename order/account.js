@@ -1,7 +1,7 @@
-import { api } from "./api.js";
-import { cart } from "./cart.js";
-import { formatCents, formatPhone, normalizePostal, isActiveStatus } from "./rules.js";
-import { el, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireCartLink, wireYear, statusLabel, formatDateTime } from "./ui.js";
+import { api } from "./api.js?v=145c4863ef";
+import { cart } from "./cart.js?v=145c4863ef";
+import { formatCents, formatPhone, normalizePostal, isActiveStatus } from "./rules.js?v=145c4863ef";
+import { el, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireCartLink, wireYear, statusLabel, formatDateTime } from "./ui.js?v=145c4863ef";
 
 const view = document.querySelector("[data-account-view]");
 let customer;

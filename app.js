@@ -1,7 +1,7 @@
-import { HOURS, DAY_NAMES, torontoNow, formatHour, money, indexMenu, priceOrder, formatCents, DIRECT_DISCOUNT_PCT, RESTAURANT } from "./order/rules.js";
-import { cart } from "./order/cart.js";
-import { loadMenu as fetchMenu } from "./order/api.js";
-import { el, wireAccountLink } from "./order/ui.js";
+import { HOURS, DAY_NAMES, torontoNow, formatHour, money, indexMenu, priceOrder, formatCents, DIRECT_DISCOUNT_PCT, RESTAURANT } from "./order/rules.js?v=145c4863ef";
+import { cart } from "./order/cart.js?v=145c4863ef";
+import { loadMenu as fetchMenu } from "./order/api.js?v=145c4863ef";
+import { el, wireAccountLink } from "./order/ui.js?v=145c4863ef";
 
 function renderStatus() {
   const badge = document.querySelector("[data-status]");

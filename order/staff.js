@@ -1,6 +1,6 @@
-import { api, isDemo, onDemoChange } from "./api.js";
-import { formatCents, formatPhone, nextStatuses } from "./rules.js";
-import { el, demoBanner, currentCustomer, mountSignIn, wireYear, describeWhen, describePayment, statusLabel, formatDateTime } from "./ui.js";
+import { api, isDemo, onDemoChange } from "./api.js?v=145c4863ef";
+import { formatCents, formatPhone, nextStatuses } from "./rules.js?v=145c4863ef";
+import { el, demoBanner, currentCustomer, mountSignIn, wireYear, describeWhen, describePayment, statusLabel, formatDateTime } from "./ui.js?v=145c4863ef";
 
 const view = document.querySelector("[data-staff-view]");
 const tools = document.querySelector("[data-staff-tools]");
