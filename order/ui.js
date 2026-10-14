@@ -1,7 +1,7 @@
-import { api, isDemo, session } from "./api.js?v=6e65618168";
-import { cart } from "./cart.js?v=6e65618168";
-import { DEMO_NUMBERS } from "./config.js?v=6e65618168";
-import { formatCents, formatPhone, formatTime, normalizePhone, slotLabel, DIRECT_DISCOUNT_PCT, HST_PCT, RESTAURANT, STATUS_LABELS } from "./rules.js?v=6e65618168";
+import { api, isDemo, session } from "./api.js?v=6f8b107fa8";
+import { cart } from "./cart.js?v=6f8b107fa8";
+import { DEMO_NUMBERS } from "./config.js?v=6f8b107fa8";
+import { formatCents, formatPhone, formatTime, normalizePhone, slotLabel, DIRECT_DISCOUNT_PCT, FULFILMENT_LABELS, HST_PCT, RESTAURANT, STATUS_LABELS } from "./rules.js?v=6f8b107fa8";
 
 export function el(tag, attrs = {}, children = []) {
   const node = document.createElement(tag);
@@ -21,10 +21,13 @@ export function describeWhen(order) {
   return slotLabel(new Date(order.when.at));
 }
 
-export function describeFulfilment(order) {
-  if (order.fulfilment.type === "pickup") return `Pickup at ${RESTAURANT.address}`;
-  const a = order.fulfilment.address;
-  return `Delivery to ${[a.line1, a.line2].filter(Boolean).join(", ")}, ${a.postal}`;
+export const fulfilmentLabel = (order) => FULFILMENT_LABELS[order.fulfilment.type];
+
+export function describePlace(order) {
+  const { type, address, dropoff } = order.fulfilment;
+  if (type === "pickup") return RESTAURANT.address;
+  if (type === "amazon") return dropoff;
+  return `${[address.line1, address.line2].filter(Boolean).join(", ")}, ${address.postal}`;
 }
 
 export function describePayment(order) {

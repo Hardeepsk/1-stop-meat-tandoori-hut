@@ -1,10 +1,10 @@
-import { api, isDemo, onDemoChange } from "./api.js?v=6e65618168";
-import { cart } from "./cart.js?v=6e65618168";
-import { RESTAURANT, isActiveStatus } from "./rules.js?v=6e65618168";
+import { api, isDemo, onDemoChange } from "./api.js?v=6f8b107fa8";
+import { cart } from "./cart.js?v=6f8b107fa8";
+import { RESTAURANT, isActiveStatus } from "./rules.js?v=6f8b107fa8";
 import {
   el, renderBill, renderLines, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireCartLink, wireYear,
-  describeWhen, describeFulfilment, describePayment, statusLabel, formatDateTime,
-} from "./ui.js?v=6e65618168";
+  describeWhen, describePlace, describePayment, fulfilmentLabel, statusLabel, formatDateTime,
+} from "./ui.js?v=6f8b107fa8";
 
 const view = document.querySelector("[data-order-view]");
 const params = new URLSearchParams(location.search);
@@ -13,7 +13,7 @@ let poll;
 let shown = "";
 
 function steps(order) {
-  const last = order.fulfilment.type === "delivery" ? "out_for_delivery" : "ready";
+  const last = order.fulfilment.type === "pickup" ? "ready" : "out_for_delivery";
   return ["received", "accepted", "preparing", last, "completed"];
 }
 
@@ -100,7 +100,7 @@ function render(order) {
         el("h2", { class: "panel-title", text: "Details" }),
         el("dl", { class: "facts" }, [
           ["When", describeWhen(order)],
-          [order.fulfilment.type === "delivery" ? "Delivery" : "Pickup", describeFulfilment(order).replace(/^(Pickup at|Delivery to) /, "")],
+          [fulfilmentLabel(order), describePlace(order)],
           ["Payment", describePayment(order)],
           order.note ? ["Note", order.note] : null,
         ].filter(Boolean).map(([k, v]) => el("div", {}, [el("dt", { text: k }), el("dd", { text: v })]))),

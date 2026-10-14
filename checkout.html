@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Rozha+One&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=6e65618168">
+<link rel="stylesheet" href="styles.css?v=6f8b107fa8">
 </head>
 <body class="subpage">
 <a class="skip" href="#main">Skip to content</a>
@@ -42,7 +42,7 @@
 
       <form class="checkout-form" id="checkout-form" data-checkout-form novalidate hidden>
         <fieldset class="panel">
-          <legend class="panel-title">Pickup or delivery</legend>
+          <legend class="panel-title">How do you want it?</legend>
           <div class="choice-grid">
             <label class="choice">
               <input type="radio" name="fulfilment" value="pickup" checked>
@@ -54,6 +54,18 @@
               <span class="choice-title">Delivery</span>
               <span class="choice-text" data-delivery-terms></span>
             </label>
+            <label class="choice" data-amazon-choice>
+              <input type="radio" name="fulfilment" value="amazon">
+              <span class="choice-title">Amazon warehouse delivery</span>
+              <span class="choice-text">Free for warehouse employees</span>
+            </label>
+          </div>
+          <div class="address-fields" data-dropoff hidden>
+            <label class="field">
+              <span>Where should we bring it?</span>
+              <textarea name="dropoff" rows="2" maxlength="200" placeholder="Warehouse, department and shift"></textarea>
+            </label>
+            <p class="field-hint">We bring warehouse orders in one bundled run. Not for home delivery.</p>
           </div>
           <div class="address-fields" data-address hidden>
             <label class="field" data-saved-wrap hidden>
@@ -132,12 +144,13 @@
               <span class="choice-title">Pay now by card</span>
               <span class="choice-text" data-online-text></span>
             </label>
-            <label class="choice">
+            <label class="choice" data-in-person-choice>
               <input type="radio" name="payment" value="in_person">
               <span class="choice-title" data-in-person-title>Pay at pickup</span>
               <span class="choice-text">Cash, debit or credit</span>
             </label>
           </div>
+          <p class="field-hint" data-card-only hidden>Amazon warehouse orders are paid by card when you order.</p>
         </fieldset>
       </form>
     </div>
@@ -171,6 +184,6 @@
   </div>
 </footer>
 
-<script type="module" src="order/checkout.js?v=6e65618168"></script>
+<script type="module" src="order/checkout.js?v=6f8b107fa8"></script>
 </body>
 </html>

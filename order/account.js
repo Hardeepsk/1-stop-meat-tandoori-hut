@@ -1,7 +1,7 @@
-import { api } from "./api.js?v=6e65618168";
-import { cart } from "./cart.js?v=6e65618168";
-import { formatCents, formatPhone, normalizePostal, isActiveStatus } from "./rules.js?v=6e65618168";
-import { el, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireCartLink, wireYear, statusLabel, formatDateTime } from "./ui.js?v=6e65618168";
+import { api } from "./api.js?v=6f8b107fa8";
+import { cart } from "./cart.js?v=6f8b107fa8";
+import { formatCents, formatPhone, normalizePostal, isActiveStatus, DELIVERY } from "./rules.js?v=6f8b107fa8";
+import { el, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireCartLink, wireYear, statusLabel, formatDateTime, fulfilmentLabel } from "./ui.js?v=6f8b107fa8";
 
 const view = document.querySelector("[data-account-view]");
 let customer;
@@ -25,7 +25,7 @@ function ordersPanel(orders) {
     el("div", { class: "order-row-main" }, [
       el("a", { class: "order-row-number", href: `order.html?id=${encodeURIComponent(o.id)}`, text: o.number }),
       el("span", { class: `status-pill status-${o.status}`, text: statusLabel(o) }),
-      el("span", { class: "order-row-meta", text: `${formatDateTime(o.createdAt)}, ${o.fulfilment.type === "delivery" ? "delivery" : "pickup"}, ${formatCents(o.bill.totalCents)}` }),
+      el("span", { class: "order-row-meta", text: `${formatDateTime(o.createdAt)}, ${fulfilmentLabel(o)}, ${formatCents(o.bill.totalCents)}` }),
       el("span", { class: "order-row-items", text: o.bill.lines.map((l) => `${l.qty}× ${l.name}`).join(", ") }),
     ]),
     el("div", { class: "order-row-actions" }, [
@@ -149,7 +149,7 @@ async function render() {
   view.replaceChildren(
     el("p", { class: "signed-in-as", text: `Signed in as ${customer.name || "a new customer"}, ${formatPhone(customer.phone)}` }),
     ordersPanel(orders),
-    el("div", { class: "account-grid" }, [profilePanel(), addressesPanel()]),
+    el("div", { class: "account-grid" }, [profilePanel(), DELIVERY.enabled && addressesPanel()]),
     sessionPanel(),
   );
 }
@@ -162,7 +162,7 @@ async function start() {
   view.replaceChildren(panel);
   mountSignIn(panel, {
     heading: "Sign in with your phone",
-    intro: "See your orders, reorder favourites and save delivery addresses. New here? Signing in creates your account.",
+    intro: `See your orders and reorder favourites${DELIVERY.enabled ? ", and save delivery addresses" : ""}. New here? Signing in creates your account.`,
     async onSignedIn(signedIn) {
       customer = signedIn;
       await render();

@@ -1,10 +1,10 @@
-import { api, isDemo, loadMenu } from "./api.js?v=6e65618168";
-import { cart } from "./cart.js?v=6e65618168";
+import { api, isDemo, loadMenu } from "./api.js?v=6f8b107fa8";
+import { cart } from "./cart.js?v=6f8b107fa8";
 import {
   indexMenu, priceOrder, formatCents, formatPhone, orderSlots, slotLabel, asapAvailable, normalizePostal,
-  inDeliveryZone, DELIVERY, TIP_OPTIONS,
-} from "./rules.js?v=6e65618168";
-import { el, renderBill, renderLines, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireYear } from "./ui.js?v=6e65618168";
+  inDeliveryZone, DELIVERY, TIP_OPTIONS, WAREHOUSE_DELIVERY,
+} from "./rules.js?v=6f8b107fa8";
+import { el, renderBill, renderLines, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireYear } from "./ui.js?v=6f8b107fa8";
 
 const $ = (sel) => document.querySelector(sel);
 const form = $("[data-checkout-form]");
@@ -130,9 +130,16 @@ function updateZone() {
 }
 
 function updateFulfilment() {
-  const delivery = value("fulfilment") === "delivery";
-  $("[data-address]").hidden = !delivery;
-  $("[data-in-person-title]").textContent = delivery ? "Pay at the door" : "Pay at pickup";
+  const type = value("fulfilment");
+  const cardOnly = type === "amazon";
+  $("[data-address]").hidden = type !== "delivery";
+  $("[data-dropoff]").hidden = type !== "amazon";
+  $("[data-in-person-title]").textContent = type === "delivery" ? "Pay at the door" : "Pay at pickup";
+  const inPerson = form.querySelector('input[name="payment"][value="in_person"]');
+  inPerson.disabled = cardOnly;
+  $("[data-in-person-choice]").classList.toggle("is-disabled", cardOnly);
+  $("[data-card-only]").hidden = !cardOnly;
+  if (cardOnly) form.querySelector('input[name="payment"][value="online"]').checked = true;
   renderSummary();
 }
 
@@ -160,6 +167,7 @@ function fillTips() {
 
 function validate() {
   if (!value("name")) return ["Add your name so we know whose order it is.", "name"];
+  if (value("fulfilment") === "amazon" && !value("dropoff")) return ["Tell us where to bring your order at the warehouse.", "dropoff"];
   if (value("fulfilment") === "delivery") {
     if (!value("line1")) return ["Add a street address for delivery.", "line1"];
     if (!normalizePostal(value("postal"))) return ["Enter a postal code like N6E 1M2.", "postal"];
@@ -188,13 +196,15 @@ async function placeOrder(e) {
     else setPlaceError(problem[0], true);
     return;
   }
-  const delivery = value("fulfilment") === "delivery";
+  const type = value("fulfilment");
   const payload = {
     name: value("name"),
     lines: cart.lines,
-    fulfilment: delivery
-      ? { type: "delivery", address: { line1: value("line1"), line2: value("line2"), postal: normalizePostal(value("postal")), instructions: value("instructions") } }
-      : { type: "pickup" },
+    fulfilment: {
+      type,
+      ...(type === "delivery" && { address: { line1: value("line1"), line2: value("line2"), postal: normalizePostal(value("postal")), instructions: value("instructions") } }),
+      ...(type === "amazon" && { dropoff: value("dropoff") }),
+    },
     when: value("when") === "asap" ? { asap: true } : { asap: false, at: value("slot") },
     payment: { method: value("payment") },
     tipPct: Number(value("tip")),
@@ -244,9 +254,11 @@ async function init() {
     return;
   }
   $("[data-checkout]").hidden = false;
+  $("[data-delivery-choice]").hidden = !DELIVERY.enabled;
   $("[data-delivery-terms]").textContent = `${formatCents(DELIVERY.feeCents)} fee, ${formatCents(DELIVERY.minimumCents)} minimum, south and central London`;
   $("[data-online-text]").textContent = isDemo ? "Preview mode, no card is charged" : "Secure checkout with Stripe";
   const { onlinePayments } = await api.settings().catch(() => ({ onlinePayments: false }));
+  $("[data-amazon-choice]").hidden = !(WAREHOUSE_DELIVERY.enabled && onlinePayments);
   if (!onlinePayments) {
     form.querySelector('input[name="payment"][value="online"]').closest(".choice").hidden = true;
     form.querySelector('input[name="payment"][value="in_person"]').checked = true;

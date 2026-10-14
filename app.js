@@ -1,7 +1,7 @@
-import { HOURS, DAY_NAMES, torontoNow, formatHour, money, indexMenu, priceOrder, formatCents, DIRECT_DISCOUNT_PCT, RESTAURANT } from "./order/rules.js?v=6e65618168";
-import { cart } from "./order/cart.js?v=6e65618168";
-import { loadMenu as fetchMenu } from "./order/api.js?v=6e65618168";
-import { el, wireAccountLink } from "./order/ui.js?v=6e65618168";
+import { HOURS, DAY_NAMES, torontoNow, formatHour, money, indexMenu, priceOrder, formatCents, DIRECT_DISCOUNT_PCT, RESTAURANT } from "./order/rules.js?v=6f8b107fa8";
+import { cart } from "./order/cart.js?v=6f8b107fa8";
+import { loadMenu as fetchMenu } from "./order/api.js?v=6f8b107fa8";
+import { el, wireAccountLink } from "./order/ui.js?v=6f8b107fa8";
 
 function renderStatus() {
   const badge = document.querySelector("[data-status]");
@@ -277,7 +277,7 @@ function wireCart(index) {
         el("div", { class: "bill-row" }, [el("dt", { text: `Subtotal, ${cart.count()} ${cart.count() === 1 ? "item" : "items"}` }), el("dd", { text: formatCents(bill.subtotalCents) })]),
         el("div", { class: "bill-row bill-save" }, [el("dt", { text: `Direct order discount, ${DIRECT_DISCOUNT_PCT}% off` }), el("dd", { text: `−${formatCents(bill.discountCents)}` })]),
       ]),
-      el("p", { class: "bill-note", text: `HST, delivery and tip are added at checkout. Pickup or delivery from ${RESTAURANT.address}.` }),
+      el("p", { class: "bill-note", text: `HST and tip are added at checkout. Pickup at ${RESTAURANT.address}.` }),
       el("a", { class: "btn btn-red btn-block", href: "checkout.html", text: `Go to checkout, ${formatCents(bill.subtotalCents - bill.discountCents)}` }),
     );
   }

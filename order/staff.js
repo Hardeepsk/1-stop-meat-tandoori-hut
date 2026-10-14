@@ -1,6 +1,6 @@
-import { api, isDemo, onDemoChange } from "./api.js?v=6e65618168";
-import { formatCents, formatPhone, nextStatuses } from "./rules.js?v=6e65618168";
-import { el, demoBanner, currentCustomer, mountSignIn, wireYear, describeWhen, describePayment, statusLabel, formatDateTime } from "./ui.js?v=6e65618168";
+import { api, isDemo, onDemoChange } from "./api.js?v=6f8b107fa8";
+import { formatCents, formatPhone, nextStatuses } from "./rules.js?v=6f8b107fa8";
+import { el, demoBanner, currentCustomer, mountSignIn, wireYear, describeWhen, describePayment, fulfilmentLabel, statusLabel, formatDateTime } from "./ui.js?v=6f8b107fa8";
 
 const view = document.querySelector("[data-staff-view]");
 const tools = document.querySelector("[data-staff-tools]");
@@ -74,7 +74,7 @@ function card(order) {
       el("span", { class: `status-pill status-${order.status}`, text: statusLabel(order) }),
     ]),
     el("p", { class: "ticket-when" }, [
-      el("strong", { text: order.fulfilment.type === "delivery" ? "Delivery" : "Pickup" }),
+      el("strong", { text: fulfilmentLabel(order) }),
       `, ${describeWhen(order)}`,
     ]),
     el("p", { class: "ticket-placed", text: `Placed ${formatDateTime(order.createdAt)}` }),
@@ -83,6 +83,7 @@ function card(order) {
       order.customerPhone ? el("a", { href: `tel:${order.customerPhone}`, text: formatPhone(order.customerPhone) }) : null,
     ]),
     a ? el("p", { class: "ticket-address", text: [a.line1, a.line2, a.postal, a.instructions].filter(Boolean).join(", ") }) : null,
+    order.fulfilment.dropoff ? el("p", { class: "ticket-address", text: order.fulfilment.dropoff }) : null,
     el("ul", { class: "ticket-items" }, order.bill.lines.map((l) => el("li", {}, [el("b", { text: `${l.qty}×` }), ` ${l.name}`]))),
     order.note ? el("p", { class: "ticket-note", text: order.note }) : null,
     el("p", { class: "ticket-total" }, [el("strong", { text: formatCents(order.bill.totalCents) }), ` ${describePayment(order)}`]),

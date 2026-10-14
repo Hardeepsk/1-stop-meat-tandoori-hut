@@ -1,8 +1,8 @@
-import { API_BASE, DEMO_NUMBERS } from "./config.js?v=6e65618168";
+import { API_BASE, DEMO_NUMBERS } from "./config.js?v=6f8b107fa8";
 import {
   priceOrder, indexMenu, normalizePhone, normalizePostal, inDeliveryZone, asapAvailable, isValidSlot,
-  nextStatuses, isActiveStatus, formatCents, STATUS_LABELS,
-} from "./rules.js?v=6e65618168";
+  nextStatuses, isActiveStatus, formatCents, STATUS_LABELS, WAREHOUSE_DELIVERY,
+} from "./rules.js?v=6f8b107fa8";
 
 export const isDemo = !API_BASE;
 
@@ -36,7 +36,7 @@ export const session = {
 
 let menuPromise;
 export function loadMenu() {
-  menuPromise ??= fetch("data/menu.json?v=6e65618168").then((res) => {
+  menuPromise ??= fetch("data/menu.json?v=6f8b107fa8").then((res) => {
     if (!res.ok) throw new ApiError("The menu didn't load. Refresh the page.", res.status);
     return res.json();
   });
@@ -228,6 +228,11 @@ function demoApi() {
       const bill = priceOrder(indexMenu(menu), { lines: payload.lines, fulfilment: type, tipPct: payload.tipPct });
       if (bill.errors.length) fail(bill.errors[0]);
       let address;
+      let dropoff;
+      if (type === "amazon") {
+        dropoff = String(payload.fulfilment.dropoff || "").trim().slice(0, WAREHOUSE_DELIVERY.dropoffMax);
+        if (!dropoff) fail("Tell us where to bring your order at the warehouse.");
+      }
       if (type === "delivery") {
         const a = payload.fulfilment.address || {};
         if (!String(a.line1 || "").trim()) fail("Add a street address for delivery.");
@@ -241,6 +246,7 @@ function demoApi() {
       if (!when.asap && !isValidSlot(when.at)) fail("That time isn't available. Pick another time.");
       const method = payload.payment?.method;
       if (method !== "online" && method !== "in_person") fail("Choose how you'd like to pay.");
+      if (type === "amazon" && method !== "online") fail("Amazon warehouse orders are paid by card when you order.");
       if (payload.expectedTotalCents !== bill.totalCents) {
         fail(`Your total changed to ${formatCents(bill.totalCents)}. Check it and place the order again.`, 409, { bill });
       }
@@ -249,7 +255,7 @@ function demoApi() {
       do number = `TH-${Math.floor(1000 + Math.random() * 9000)}`; while (db.orders.some((o) => o.number === number));
       const order = {
         id: randomId(), number, customerId: customer.id, customerName: customer.name, customerPhone: customer.phone,
-        status: "received", fulfilment: address ? { type, address } : { type }, when,
+        status: "received", fulfilment: { type, ...(address && { address }), ...(dropoff && { dropoff }) }, when,
         payment: { method, status: method === "online" ? "paid" : "unpaid" },
         note: String(payload.note || "").slice(0, 300), bill, history: [{ status: "received", at: now }], createdAt: now,
       };

@@ -19,10 +19,21 @@ export const SLOT_MINUTES = 15;
 export const SCHEDULE_DAYS = 2;
 
 export const DELIVERY = {
-  enabled: true,
+  enabled: false,
   feeCents: 499,
   minimumCents: 2500,
   postalPrefixes: ["N6C", "N6E", "N6J", "N6K", "N6L", "N6M", "N6N", "N5W", "N5Z"],
+};
+
+export const WAREHOUSE_DELIVERY = {
+  enabled: true,
+  dropoffMax: 200,
+};
+
+export const FULFILMENT_LABELS = {
+  pickup: "Pickup",
+  delivery: "Delivery",
+  amazon: "Amazon warehouse delivery",
 };
 
 export const STATUS_LABELS = {
@@ -48,7 +59,7 @@ const TRANSITIONS = {
 export function nextStatuses(order) {
   return (TRANSITIONS[order.status] || []).filter((s) => {
     if (s === "ready") return order.fulfilment.type === "pickup";
-    if (s === "out_for_delivery") return order.fulfilment.type === "delivery";
+    if (s === "out_for_delivery") return order.fulfilment.type !== "pickup";
     return true;
   });
 }
@@ -180,8 +191,9 @@ export function priceOrder(index, { lines, fulfilment = "pickup", tipPct = 0 }) 
   });
   if (!priced.length && !errors.length) errors.push("Your cart is empty.");
   if (!TIP_OPTIONS.includes(tipPct)) errors.push("Choose a tip from the options.");
-  if (fulfilment !== "pickup" && fulfilment !== "delivery") errors.push("Choose pickup or delivery.");
+  if (!Object.hasOwn(FULFILMENT_LABELS, fulfilment)) errors.push("Choose how you'd like to get your order.");
   if (fulfilment === "delivery" && !DELIVERY.enabled) errors.push("Delivery isn't available right now.");
+  if (fulfilment === "amazon" && !WAREHOUSE_DELIVERY.enabled) errors.push("Amazon warehouse delivery isn't available right now.");
 
   const taxableCents = priced.filter((l) => !l.raw).reduce((n, l) => n + l.totalCents, 0);
   const zeroRatedCents = priced.filter((l) => l.raw).reduce((n, l) => n + l.totalCents, 0);
