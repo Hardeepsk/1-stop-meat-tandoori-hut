@@ -1,7 +1,7 @@
-import { api, isDemo, session } from "./api.js?v=6f8b107fa8";
-import { cart } from "./cart.js?v=6f8b107fa8";
-import { DEMO_NUMBERS } from "./config.js?v=6f8b107fa8";
-import { formatCents, formatPhone, formatTime, normalizePhone, slotLabel, DIRECT_DISCOUNT_PCT, FULFILMENT_LABELS, HST_PCT, RESTAURANT, STATUS_LABELS } from "./rules.js?v=6f8b107fa8";
+import { api, isDemo, session } from "./api.js?v=637464b1ea";
+import { cart } from "./cart.js?v=637464b1ea";
+import { DEMO_NUMBERS } from "./config.js?v=637464b1ea";
+import { formatCents, formatPhone, formatTime, normalizePhone, slotLabel, DIRECT_DISCOUNT_PCT, FULFILMENT_LABELS, HST_PCT, RESTAURANT, STATUS_LABELS } from "./rules.js?v=637464b1ea";
 
 export function el(tag, attrs = {}, children = []) {
   const node = document.createElement(tag);

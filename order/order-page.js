@@ -1,10 +1,10 @@
-import { api, isDemo, onDemoChange } from "./api.js?v=6f8b107fa8";
-import { cart } from "./cart.js?v=6f8b107fa8";
-import { RESTAURANT, isActiveStatus } from "./rules.js?v=6f8b107fa8";
+import { api, isDemo, onDemoChange } from "./api.js?v=637464b1ea";
+import { cart } from "./cart.js?v=637464b1ea";
+import { RESTAURANT, isActiveStatus } from "./rules.js?v=637464b1ea";
 import {
   el, renderBill, renderLines, demoBanner, currentCustomer, mountSignIn, wireAccountLink, wireCartLink, wireYear,
   describeWhen, describePlace, describePayment, fulfilmentLabel, statusLabel, formatDateTime,
-} from "./ui.js?v=6f8b107fa8";
+} from "./ui.js?v=637464b1ea";
 
 const view = document.querySelector("[data-order-view]");
 const params = new URLSearchParams(location.search);
@@ -23,7 +23,7 @@ function renderProgress(order) {
   }
   const list = steps(order);
   const at = list.indexOf(order.status);
-  return el("ol", { class: "progress" }, list.map((status, i) => el("li", {
+  return el("ol", { class: `progress progress-${order.status}` }, list.map((status, i) => el("li", {
     class: i < at ? "is-done" : i === at ? "is-current" : "",
     "aria-current": i === at ? "step" : false,
   }, [el("span", { text: statusLabel({ status }) })])));
@@ -101,9 +101,9 @@ function render(order) {
         el("dl", { class: "facts" }, [
           ["When", describeWhen(order)],
           [fulfilmentLabel(order), describePlace(order)],
-          ["Payment", describePayment(order)],
+          ["Payment", describePayment(order), order.payment.status === "paid" && "is-paid"],
           order.note ? ["Note", order.note] : null,
-        ].filter(Boolean).map(([k, v]) => el("div", {}, [el("dt", { text: k }), el("dd", { text: v })]))),
+        ].filter(Boolean).map(([k, v, cls]) => el("div", {}, [el("dt", { text: k }), el("dd", { class: cls, text: v })]))),
       ]),
       el("section", { class: "panel" }, [
         el("h2", { class: "panel-title", text: "Bill" }),

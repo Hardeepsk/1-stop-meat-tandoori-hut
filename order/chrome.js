@@ -1,4 +1,4 @@
-import { wireAccountLink, wireCartLink, wireYear } from "./ui.js?v=6f8b107fa8";
+import { wireAccountLink, wireCartLink, wireYear } from "./ui.js?v=637464b1ea";
 
 wireYear();
 wireCartLink();

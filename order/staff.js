@@ -1,6 +1,6 @@
-import { api, isDemo, onDemoChange } from "./api.js?v=6f8b107fa8";
-import { formatCents, formatPhone, nextStatuses } from "./rules.js?v=6f8b107fa8";
-import { el, demoBanner, currentCustomer, mountSignIn, wireYear, describeWhen, describePayment, fulfilmentLabel, statusLabel, formatDateTime } from "./ui.js?v=6f8b107fa8";
+import { api, isDemo, onDemoChange } from "./api.js?v=637464b1ea";
+import { formatCents, formatPhone, nextStatuses } from "./rules.js?v=637464b1ea";
+import { el, demoBanner, currentCustomer, mountSignIn, wireYear, describeWhen, describePayment, fulfilmentLabel, statusLabel, formatDateTime } from "./ui.js?v=637464b1ea";
 
 const view = document.querySelector("[data-staff-view]");
 const tools = document.querySelector("[data-staff-tools]");
@@ -86,7 +86,11 @@ function card(order) {
     order.fulfilment.dropoff ? el("p", { class: "ticket-address", text: order.fulfilment.dropoff }) : null,
     el("ul", { class: "ticket-items" }, order.bill.lines.map((l) => el("li", {}, [el("b", { text: `${l.qty}×` }), ` ${l.name}`]))),
     order.note ? el("p", { class: "ticket-note", text: order.note }) : null,
-    el("p", { class: "ticket-total" }, [el("strong", { text: formatCents(order.bill.totalCents) }), ` ${describePayment(order)}`]),
+    el("p", { class: "ticket-total" }, [
+      el("strong", { text: formatCents(order.bill.totalCents) }),
+      " ",
+      el("span", { class: order.payment.status === "paid" && "is-paid", text: describePayment(order) }),
+    ]),
     actions.length ? el("div", { class: "ticket-actions" }, actions) : null,
   ]);
 }

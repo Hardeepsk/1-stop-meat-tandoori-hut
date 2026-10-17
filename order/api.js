@@ -1,8 +1,8 @@
-import { API_BASE, DEMO_NUMBERS } from "./config.js?v=6f8b107fa8";
+import { API_BASE, DEMO_NUMBERS } from "./config.js?v=637464b1ea";
 import {
   priceOrder, indexMenu, normalizePhone, normalizePostal, inDeliveryZone, asapAvailable, isValidSlot,
   nextStatuses, isActiveStatus, formatCents, STATUS_LABELS, WAREHOUSE_DELIVERY,
-} from "./rules.js?v=6f8b107fa8";
+} from "./rules.js?v=637464b1ea";
 
 export const isDemo = !API_BASE;
 
@@ -36,7 +36,7 @@ export const session = {
 
 let menuPromise;
 export function loadMenu() {
-  menuPromise ??= fetch("data/menu.json?v=6f8b107fa8").then((res) => {
+  menuPromise ??= fetch("data/menu.json?v=637464b1ea").then((res) => {
     if (!res.ok) throw new ApiError("The menu didn't load. Refresh the page.", res.status);
     return res.json();
   });
